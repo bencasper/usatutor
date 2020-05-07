@@ -128,7 +128,7 @@ class SaleOrderFinance(models.Model):
 
 
 class SaleOrderPayment(models.Model):
-    type = models.PositiveIntegerField()
+    payment_type = models.PositiveIntegerField()
     payment_method_id = models.PositiveIntegerField()
     payment_method_name = models.CharField(max_length=100)
     due_amount = models.DecimalField(max_digits=10, decimal_places=2)
