@@ -7,7 +7,6 @@
 # Feel free to rename the models, but don't rename db_table values or field names.
 from django.db import models
 
-
 class ActivityEntity(models.Model):
     tutor_id = models.PositiveIntegerField()
     tutor_name = models.CharField(max_length=100)
@@ -29,9 +28,8 @@ class ActivityEntity(models.Model):
     create_time = models.DateTimeField()
 
     class Meta:
-        managed = False
         db_table = 'activity_entity'
-
+        
 
 class CourseContent(models.Model):
     level_id = models.PositiveIntegerField()
@@ -42,7 +40,6 @@ class CourseContent(models.Model):
     create_time = models.DateTimeField()
 
     class Meta:
-        managed = False
         db_table = 'course_content'
 
 
@@ -54,7 +51,6 @@ class CourseLevel(models.Model):
     create_time = models.DateTimeField()
 
     class Meta:
-        managed = False
         db_table = 'course_level'
 
 
@@ -80,7 +76,6 @@ class SaleOrder(models.Model):
     create_time = models.DateTimeField()
 
     class Meta:
-        managed = False
         db_table = 'sale_order'
 
 
@@ -104,7 +99,6 @@ class SaleOrderCourse(models.Model):
     create_time = models.DateTimeField()
 
     class Meta:
-        managed = False
         db_table = 'sale_order_course'
 
 
@@ -123,7 +117,6 @@ class SaleOrderFinance(models.Model):
     create_time = models.DateTimeField()
 
     class Meta:
-        managed = False
         db_table = 'sale_order_finance'
 
 
@@ -143,7 +136,6 @@ class SaleOrderPayment(models.Model):
     create_time = models.DateTimeField()
 
     class Meta:
-        managed = False
         db_table = 'sale_order_payment'
 
 
@@ -155,7 +147,6 @@ class TextbookCategory(models.Model):
     create_time = models.DateTimeField()
 
     class Meta:
-        managed = False
         db_table = 'textbook_category'
 
 
@@ -168,7 +159,6 @@ class TextbookContent(models.Model):
     create_time = models.DateTimeField()
 
     class Meta:
-        managed = False
         db_table = 'textbook_content'
 
 
@@ -187,7 +177,6 @@ class UserMemeberInfo(models.Model):
     create_time = models.DateTimeField()
 
     class Meta:
-        managed = False
         db_table = 'user_memeber_info'
 
 
@@ -199,7 +188,6 @@ class UserRole(models.Model):
     create_time = models.DateTimeField()
 
     class Meta:
-        managed = False
         db_table = 'user_role'
 
 
@@ -212,7 +200,6 @@ class UserTutorResume(models.Model):
     create_time = models.DateTimeField()
 
     class Meta:
-        managed = False
         db_table = 'user_tutor_resume'
 
 
@@ -226,5 +213,4 @@ class UserTutorSchedule(models.Model):
     create_time = models.DateTimeField()
 
     class Meta:
-        managed = False
         db_table = 'user_tutor_schedule'
