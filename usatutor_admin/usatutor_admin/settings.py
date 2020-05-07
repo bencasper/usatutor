@@ -31,6 +31,12 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'sale_admin.apps.SaleAdminConfig',
+    'activity_admin.apps.ActivityAdminConfig',
+    'user_admin.apps.UserAdminConfig',
+    'course_admin.apps.CourseAdminConfig',
+    'textbook_admin.apps.TextbookAdminConfig',
+    'grappelli',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
