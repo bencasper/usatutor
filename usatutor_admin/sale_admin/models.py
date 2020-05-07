@@ -2,7 +2,7 @@ from django.db import models
 
 
 class SaleOrder(models.Model):
-    order_no = models.CharField(max_length=45)
+    order_no = models.CharField(max_length=45, verbose_name='订单No')
     tutor_id = models.PositiveIntegerField()
     tutor_name = models.CharField(max_length=100)
     student_id = models.PositiveIntegerField()
@@ -24,6 +24,8 @@ class SaleOrder(models.Model):
 
     class Meta:
         db_table = 'sale_order'
+        verbose_name = "订单管理"
+        verbose_name_plural = "订单管理"
 
 
 class SaleOrderCourse(models.Model):
