@@ -25,7 +25,7 @@ CREATE TABLE IF NOT EXISTS `usa_tutor`.`user_memeber_info` (
   `user_phone` VARCHAR(20) NOT NULL DEFAULT '',
   `user_role_id` INT UNSIGNED NOT NULL,
   `is_tutor` TINYINT(4) UNSIGNED NOT NULL DEFAULT 0 COMMENT '是否tutor 0 否 1 是',
-  `user_profile_url` VARCHAR(255) NOT NULL DEFAULT '' COMMENT '用户头像',
+  `user_profile_url` VARCHAR(255) NOT NULL DEFAULT '' COMMENT '用户头像\n',
   `user_wx_openid` VARCHAR(100) NOT NULL DEFAULT '' COMMENT '微信openid',
   `user_wx_unionid` VARCHAR(100) NOT NULL DEFAULT '' COMMENT '微信unionid',
   `register_time` DATETIME NOT NULL COMMENT '注册时间',
@@ -36,8 +36,6 @@ CREATE TABLE IF NOT EXISTS `usa_tutor`.`user_memeber_info` (
   PRIMARY KEY (`id`))
 ENGINE = InnoDB
 COMMENT = '注册用户基本信息';
-
-CREATE UNIQUE INDEX `id_UNIQUE` ON `usa_tutor`.`user_memeber_info` (`id` ASC) VISIBLE;
 
 
 -- -----------------------------------------------------
@@ -55,8 +53,6 @@ CREATE TABLE IF NOT EXISTS `usa_tutor`.`user_role` (
   PRIMARY KEY (`id`))
 ENGINE = InnoDB
 COMMENT = '用户角色';
-
-CREATE UNIQUE INDEX `id_UNIQUE` ON `usa_tutor`.`user_role` (`id` ASC) VISIBLE;
 
 
 -- -----------------------------------------------------
@@ -76,8 +72,6 @@ CREATE TABLE IF NOT EXISTS `usa_tutor`.`user_tutor_schedule` (
   PRIMARY KEY (`id`))
 ENGINE = InnoDB
 COMMENT = '教师课程安排';
-
-CREATE UNIQUE INDEX `id_UNIQUE` ON `usa_tutor`.`user_tutor_schedule` (`id` ASC) VISIBLE;
 
 
 -- -----------------------------------------------------
@@ -110,8 +104,6 @@ CREATE TABLE IF NOT EXISTS `usa_tutor`.`sale_order` (
 ENGINE = InnoDB
 COMMENT = '订单';
 
-CREATE UNIQUE INDEX `id_UNIQUE` ON `usa_tutor`.`sale_order` (`id` ASC) VISIBLE;
-
 
 -- -----------------------------------------------------
 -- Table `usa_tutor`.`sale_order_course`
@@ -122,7 +114,7 @@ CREATE TABLE IF NOT EXISTS `usa_tutor`.`sale_order_course` (
   `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `course_id` INT UNSIGNED NOT NULL COMMENT '课程id',
   `course_name` VARCHAR(100) NOT NULL,
-  `course_level_id` INT UNSIGNED NOT NULL COMMENT '课程级别',
+  `course_level_id` INT UNSIGNED NOT NULL COMMENT '课程级别\n',
   `course_level_name` VARCHAR(45) NOT NULL DEFAULT '',
   `course_begin_time` DATETIME NOT NULL COMMENT '课程计划开始时间',
   `couse_end_time` DATETIME NOT NULL COMMENT '课程计划结束时间',
@@ -131,7 +123,7 @@ CREATE TABLE IF NOT EXISTS `usa_tutor`.`sale_order_course` (
   `couse_status` TINYINT(4) UNSIGNED NOT NULL COMMENT '课程状态 1 未授课 2 已授课 3 已退课',
   `couse_income_amount` DECIMAL(10,2) NOT NULL DEFAULT 0 COMMENT '课程实收',
   `couse_refundable_amount` DECIMAL(10,2) NOT NULL DEFAULT 0 COMMENT '课程可退款金额',
-  `couse_discount_amount` DECIMAL(10,2) NOT NULL DEFAULT 0 COMMENT '课程优惠金额',
+  `couse_discount_amount` DECIMAL(10,2) NOT NULL DEFAULT 0 COMMENT '课程优惠金额\n',
   `couse_refunded_amount` DECIMAL(10,2) NOT NULL DEFAULT 0 COMMENT '课程已退款金额',
   `couse_refund_apply_time` DATETIME NULL,
   `couse_refunded_time` DATETIME NULL,
@@ -140,8 +132,6 @@ CREATE TABLE IF NOT EXISTS `usa_tutor`.`sale_order_course` (
   PRIMARY KEY (`id`))
 ENGINE = InnoDB
 COMMENT = '订单课程明细';
-
-CREATE UNIQUE INDEX `id_UNIQUE` ON `usa_tutor`.`sale_order_course` (`id` ASC) VISIBLE;
 
 
 -- -----------------------------------------------------
@@ -156,10 +146,10 @@ CREATE TABLE IF NOT EXISTS `usa_tutor`.`sale_order_payment` (
   `payment_method_name` VARCHAR(100) NOT NULL DEFAULT '' COMMENT '支付方式名称',
   `due_amount` DECIMAL(10,2) NOT NULL COMMENT '应付金额',
   `paid_amount` DECIMAL(10,2) NOT NULL COMMENT '实付金额',
-  `payment_status` TINYINT(4) UNSIGNED NOT NULL DEFAULT 1 COMMENT '支付状态  1 未支付 2 已支付 3 支付失败',
+  `payment_status` TINYINT(4) UNSIGNED NOT NULL DEFAULT 1 COMMENT '支付状态  1 未支付 2 已支付 3 支付失败\n',
   `thirdparty_payment_no` VARCHAR(100) NOT NULL COMMENT '三方支付流水',
-  `refunded` TINYINT(2) UNSIGNED NOT NULL DEFAULT 0 COMMENT '是否已退款  0 否 1 是',
-  `payment_apply_time` DATETIME NOT NULL COMMENT '支付发起时间',
+  `refunded` TINYINT(2) UNSIGNED NOT NULL DEFAULT 0 COMMENT '是否已退款  0 否 1 是\n',
+  `payment_apply_time` DATETIME NOT NULL COMMENT '支付发起时间\n',
   `payment_success_time` DATETIME NULL COMMENT '支付成功时间',
   `payment_failture_time` DATETIME NULL COMMENT '支付失败时间',
   `update_time` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
@@ -167,8 +157,6 @@ CREATE TABLE IF NOT EXISTS `usa_tutor`.`sale_order_payment` (
   PRIMARY KEY (`id`))
 ENGINE = InnoDB
 COMMENT = '订单支付明细';
-
-CREATE UNIQUE INDEX `id_UNIQUE` ON `usa_tutor`.`sale_order_payment` (`id` ASC) VISIBLE;
 
 
 -- -----------------------------------------------------
@@ -180,21 +168,19 @@ CREATE TABLE IF NOT EXISTS `usa_tutor`.`sale_order_finance` (
   `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `order_id` INT UNSIGNED NOT NULL,
   `order_income_amount` DECIMAL(10,2) NOT NULL COMMENT '订单收入',
-  `order_income_ratio` DECIMAL(10,2) NOT NULL COMMENT '订单分账比率',
-  `thirdparty_fee_radio` DECIMAL(10,2) NOT NULL COMMENT '三方支付手续费率',
+  `order_income_ratio` DECIMAL(10,2) NOT NULL COMMENT '订单分账比率\n',
+  `thirdparty_fee_radio` DECIMAL(10,2) NOT NULL COMMENT '三方支付手续费率\n',
   `ledger_type` TINYINT(4) NOT NULL DEFAULT 1 COMMENT '分账类型 1 订单开始履约后  t+   2 订单履约结束后 t+',
   `ledger_day` TINYINT(4) NOT NULL COMMENT '分账时效  t+0',
   `self_income_amount` DECIMAL(10,2) NOT NULL COMMENT '自收入',
   `partner_due` DECIMAL(10,2) NOT NULL COMMENT '合伙方收入',
-  `thirdparty_fee` DECIMAL(10,2) NOT NULL COMMENT '三方支付手续费',
+  `thirdparty_fee` DECIMAL(10,2) NOT NULL COMMENT '三方支付手续费\n',
   `ledger_time` DATETIME NULL,
   `update_time` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '分账日期',
   `create_time` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB
 COMMENT = '订单财务分账';
-
-CREATE UNIQUE INDEX `id_UNIQUE` ON `usa_tutor`.`sale_order_finance` (`id` ASC) VISIBLE;
 
 
 -- -----------------------------------------------------
@@ -213,8 +199,6 @@ CREATE TABLE IF NOT EXISTS `usa_tutor`.`textbook_category` (
 ENGINE = InnoDB
 COMMENT = '教材分类';
 
-CREATE UNIQUE INDEX `id_UNIQUE` ON `usa_tutor`.`textbook_category` (`id` ASC) VISIBLE;
-
 
 -- -----------------------------------------------------
 -- Table `usa_tutor`.`textbook_content`
@@ -224,7 +208,7 @@ DROP TABLE IF EXISTS `usa_tutor`.`textbook_content` ;
 CREATE TABLE IF NOT EXISTS `usa_tutor`.`textbook_content` (
   `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `textbook_title` VARCHAR(100) NOT NULL COMMENT '教材名称',
-  `textbook_url` VARCHAR(255) NOT NULL DEFAULT '' COMMENT '教材官方链接',
+  `textbook_url` VARCHAR(255) NOT NULL DEFAULT '' COMMENT '教材官方链接\n',
   `textbook_desc` VARCHAR(255) NOT NULL DEFAULT '',
   `edit_by` INT UNSIGNED NOT NULL,
   `update_time` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
@@ -232,8 +216,6 @@ CREATE TABLE IF NOT EXISTS `usa_tutor`.`textbook_content` (
   PRIMARY KEY (`id`))
 ENGINE = InnoDB
 COMMENT = '教材内容';
-
-CREATE UNIQUE INDEX `id_UNIQUE` ON `usa_tutor`.`textbook_content` (`id` ASC) VISIBLE;
 
 
 -- -----------------------------------------------------
@@ -253,8 +235,6 @@ CREATE TABLE IF NOT EXISTS `usa_tutor`.`user_tutor_resume` (
 ENGINE = InnoDB
 COMMENT = '教师简历';
 
-CREATE UNIQUE INDEX `id_UNIQUE` ON `usa_tutor`.`user_tutor_resume` (`id` ASC) VISIBLE;
-
 
 -- -----------------------------------------------------
 -- Table `usa_tutor`.`activity_entity`
@@ -271,21 +251,19 @@ CREATE TABLE IF NOT EXISTS `usa_tutor`.`activity_entity` (
   `course_id` INT UNSIGNED NOT NULL,
   `course_name` VARCHAR(100) NOT NULL,
   `due_begin_time` DATETIME NOT NULL COMMENT '计划开始时间',
-  `due_end_time` DATETIME NOT NULL COMMENT '计划结束时间',
-  `webrtc_id` VARCHAR(100) NOT NULL COMMENT '视频id',
+  `due_end_time` DATETIME NOT NULL COMMENT '计划结束时间\n',
+  `webrtc_id` VARCHAR(100) NOT NULL COMMENT '视频id\n',
   `real_begin_time` DATETIME NOT NULL COMMENT '实际开始时间',
   `real_end_time` DATETIME NULL COMMENT '实际结束时间',
   `real_duration` INT UNSIGNED NOT NULL DEFAULT 0 COMMENT '授课时长（s）',
   `status` TINYINT(4) UNSIGNED NOT NULL COMMENT '授课状态 1 授课中 2 授课中断 3 授课完成',
   `tutor_score` TINYINT NOT NULL DEFAULT 10 COMMENT '教师得分',
-  `student_score` TINYINT NOT NULL DEFAULT 10 COMMENT '学生得分',
+  `student_score` TINYINT NOT NULL DEFAULT 10 COMMENT '学生得分\n',
   `update_time` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `create_time` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB
 COMMENT = '授课实例';
-
-CREATE UNIQUE INDEX `id_UNIQUE` ON `usa_tutor`.`activity_entity` (`id` ASC) VISIBLE;
 
 
 -- -----------------------------------------------------
@@ -304,8 +282,6 @@ CREATE TABLE IF NOT EXISTS `usa_tutor`.`course_level` (
 ENGINE = InnoDB
 COMMENT = '课程等级/类型';
 
-CREATE UNIQUE INDEX `id_UNIQUE` ON `usa_tutor`.`course_level` (`id` ASC) VISIBLE;
-
 
 -- -----------------------------------------------------
 -- Table `usa_tutor`.`course_content`
@@ -323,8 +299,6 @@ CREATE TABLE IF NOT EXISTS `usa_tutor`.`course_content` (
   PRIMARY KEY (`id`))
 ENGINE = InnoDB
 COMMENT = '课程内容';
-
-CREATE UNIQUE INDEX `id_UNIQUE` ON `usa_tutor`.`course_content` (`id` ASC) VISIBLE;
 
 
 SET SQL_MODE=@OLD_SQL_MODE;
