@@ -1,4 +1,5 @@
 from suit.apps import DjangoSuitConfig
+from django.contrib.admin.apps import AdminConfig
 
 
 class SuitConfig(DjangoSuitConfig):

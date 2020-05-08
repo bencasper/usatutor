@@ -6,4 +6,5 @@ from .models import SaleOrder, SaleOrderCourse, SaleOrderPayment, SaleOrderFinan
 
 @admin.register(SaleOrder, SaleOrderCourse, SaleOrderPayment, SaleOrderFinance)
 class SaleAdmin(admin.ModelAdmin):
+
     pass
