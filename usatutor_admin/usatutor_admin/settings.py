@@ -36,7 +36,7 @@ INSTALLED_APPS = [
     'user_admin.apps.UserAdminConfig',
     'course_admin.apps.CourseAdminConfig',
     'textbook_admin.apps.TextbookAdminConfig',
-    'mysuit.apps.SuitConfig',
+    'usatutor_admin.mysuit.apps.SuitConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
