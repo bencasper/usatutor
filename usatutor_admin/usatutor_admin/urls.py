@@ -16,6 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
+admin.site.index_template = 'mysuit/admin/admin_index.html'
 admin.site.site_header = '北美外教'                    # default: "Django Administration"
 admin.site.index_title = '后台管理'                 # default: "Site administration"
 admin.site.site_title = '北美外教后台管理'

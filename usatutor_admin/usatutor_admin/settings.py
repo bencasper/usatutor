@@ -60,7 +60,7 @@ ROOT_URLCONF = 'usatutor_admin.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -89,7 +89,7 @@ WSGI_APPLICATION = 'usatutor_admin.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'HOST': '120.27.49.245',
+        # 'HOST': '120.27.49.245',
         'PORT': '3306',
         'NAME': 'usa_tutor',
         'USER': 'usatutor',
