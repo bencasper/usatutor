@@ -26,5 +26,5 @@ admin.site.login_form = AdminAuthenticationFormWithCaptcha
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path(r'^captcha/', include('captcha.urls')),
+    path('captcha/', include('captcha.urls')),
 ]
