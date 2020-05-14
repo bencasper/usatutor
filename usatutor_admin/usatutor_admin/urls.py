@@ -15,12 +15,16 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from usatutor_admin.mysuit.forms import AdminAuthenticationFormWithCaptcha
 
 admin.site.index_template = 'mysuit/admin/admin_index.html'
+admin.site.login_template = 'mysuit/admin/login.html'
 admin.site.site_header = 'UAS TUTOR'                    # default: "Django Administration"
 admin.site.index_title = 'ADMIN'                 # default: "Site administration"
 admin.site.site_title = 'USA TUTOR ADMIN'
+admin.site.login_form = AdminAuthenticationFormWithCaptcha
 
 urlpatterns = [
-    path('admin/', admin.site.urls)
+    path('admin/', admin.site.urls),
+    path(r'^captcha/', include('captcha.urls')),
 ]
