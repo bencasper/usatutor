@@ -15,7 +15,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from rest_framework import routers
 from usatutor_admin.mysuit.forms import AdminAuthenticationFormWithCaptcha
+
+from rest_api.views import UserViewSet
 
 admin.site.index_template = 'mysuit/admin/admin_index.html'
 admin.site.login_template = 'mysuit/admin/login.html'
@@ -24,7 +27,15 @@ admin.site.index_title = 'ADMIN'                 # default: "Site administration
 admin.site.site_title = 'USA TUTOR ADMIN'
 admin.site.login_form = AdminAuthenticationFormWithCaptcha
 
+
+# Routers provide an easy way of automatically determining the URL conf.
+router = routers.DefaultRouter()
+router.register(r'users', UserViewSet)
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('captcha/', include('captcha.urls')),
+    path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+    path('', include(router.urls)),
+
 ]
