@@ -1,4 +1,5 @@
 from django.db import models
+from django.forms import ModelForm
 
 
 class UserMemeberInfo(models.Model):
@@ -53,3 +54,5 @@ class UserTutorSchedule(models.Model):
 
     class Meta:
         db_table = 'user_tutor_schedule'
+        verbose_name = "我的日程"
+        verbose_name_plural = "我的日程"
