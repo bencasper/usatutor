@@ -7,7 +7,9 @@
 {% endblock %}
 
 {% block content %}
+{% include "./schedule_editor.html" %}
 {% endblock %}
+
 
 {% block footer %}
 <div id="footer">
@@ -28,12 +30,6 @@
             </div>
         </div>
     </footer>
-
-    <script src="/static/suit/js/suit.js"></script>
-    <script type="text/javascript">
-        Suit.$("#_form").suitFormDebounce();
-        Suit.FixedBar.init();
-    </script>
 </div>
 {% endblock %}
 

@@ -21,7 +21,6 @@ class userScheduleAdmin(admin.ModelAdmin):
         ]
         css = [
             'fullcalendar.min.css',
-            'fullcalendar.print.min.css',
             'scheduler.min.css',
         ]
         return forms.Media(css={'all': ['useradmin/css/%s' % url for url in css]},

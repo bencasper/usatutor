@@ -1,226 +1,182 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <!--<title>Calendar events</title>-->
-    <!--<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">-->
-    <!--<link href="./files/fullcalendar.min.css" rel="stylesheet">-->
-    <!--<link href="./files/fullcalendar.print.min.css" rel="stylesheet" media="print">-->
-    <!--<link href="./files/scheduler.min.css" rel="stylesheet">-->
-    <!--<script src="./files/moment.min.js"></script>-->
-    <!--<script src="./files/jquery.min.js"></script>-->
-    <!--<script src="./files/jquery-ui.min.js"></script>-->
-    <!--<script src="./files/fullcalendar.min.js"></script>-->
-    <!--<script src="./files/scheduler.min.js"></script>-->
-    <script>
-$(function() { // document ready
+<script>
+    $(function () { // document ready
 
 
-    /* initialize the external events
-    -----------------------------------------------------------------*/
+        /* initialize the external events
+        -----------------------------------------------------------------*/
 
-    $('#external-events .fc-event').each(function() {
+        $('#external-events .fc-event').each(function () {
 
-      // store data so the calendar knows to render an event upon drop
-      $(this).data('event', {
-        title: $.trim($(this).text()), // use the element's text as the event title
-        stick: true // maintain when user navigates (see docs on the renderEvent method)
-      });
+            // store data so the calendar knows to render an event upon drop
+            $(this).data('event', {
+                title: $.trim($(this).text()), // use the element's text as the event title
+                stick: true // maintain when user navigates (see docs on the renderEvent method)
+            });
 
-      // make the event draggable using jQuery UI
-      $(this).draggable({
-        zIndex: 999,
-        revert: true,      // will cause the event to go back to its
-        revertDuration: 0  //  original position after the drag
-      });
+            // make the event draggable using jQuery UI
+            $(this).draggable({
+                zIndex: 999,
+                revert: true,      // will cause the event to go back to its
+                revertDuration: 0  //  original position after the drag
+            });
 
-    });
-
-
-    /* initialize the calendar
-    -----------------------------------------------------------------*/
-
-    $('#calendar').fullCalendar({
-        schedulerLicenseKey: 'GPL-My-Project-Is-Open-Source',
-      now: '2020-05-18',
-      editable: true, // enable draggable events
-      droppable: true, // this allows things to be dropped onto the calendar
-      aspectRatio: 1.8,
-      scrollTime: '00:00', // undo default 6am scrollTime
-      header: {
-        left: 'today prev,next',
-        center: 'title',
-        right: 'timelineDay,timelineThreeDays,agendaWeek,month'
-      },
-      defaultView: 'timelineDay',
-      views: {
-        timelineThreeDays: {
-          type: 'timeline',
-          duration: { days: 3 }
-        }
-      },
-      resourceLabelText: 'Rooms',
-      resources: [
-        { id: 'a', title: 'Auditorium A' },
-        { id: 'b', title: 'Auditorium B', eventColor: 'green' },
-        { id: 'c', title: 'Auditorium C', eventColor: 'orange' },
-        { id: 'd', title: 'Auditorium D', children: [
-          { id: 'd1', title: 'Room D1' },
-          { id: 'd2', title: 'Room D2' }
-        ] },
-        { id: 'e', title: 'Auditorium E' },
-        { id: 'f', title: 'Auditorium F', eventColor: 'red' },
-        { id: 'g', title: 'Auditorium G' },
-        { id: 'h', title: 'Auditorium H' },
-        { id: 'i', title: 'Auditorium I' },
-        { id: 'j', title: 'Auditorium J' },
-        { id: 'k', title: 'Auditorium K' },
-        { id: 'l', title: 'Auditorium L' },
-        { id: 'm', title: 'Auditorium M' },
-        { id: 'n', title: 'Auditorium N' },
-        { id: 'o', title: 'Auditorium O' },
-        { id: 'p', title: 'Auditorium P' },
-        { id: 'q', title: 'Auditorium Q' },
-        { id: 'r', title: 'Auditorium R' },
-        { id: 's', title: 'Auditorium S' },
-        { id: 't', title: 'Auditorium T' },
-        { id: 'u', title: 'Auditorium U' },
-        { id: 'v', title: 'Auditorium V' },
-        { id: 'w', title: 'Auditorium W' },
-        { id: 'x', title: 'Auditorium X' },
-        { id: 'y', title: 'Auditorium Y' },
-        { id: 'z', title: 'Auditorium Z' }
-      ],
-      events: [
-          { id: '1', resourceId: 'b', start: '2020-05-18T02:00:00', end: '2020-05-18T07:00:00', title: 'Math' },
-        { id: '2', resourceId: 'c', start: '2020-05-18T05:00:00', end: '2020-05-18T22:00:00', title: 'Science' },
-        { id: '3', resourceId: 'd', start: '2020-05-17', end: '2020-05-19', title: 'Free' },
-        { id: '4', resourceId: 'e', start: '2020-05-18T03:00:00', end: '2020-05-18T08:00:00', title: 'Dentist' },
-        { id: '5', resourceId: 'f', start: '2020-05-18T00:30:00', end: '2020-05-18T02:30:00', title: 'Lunch' }
-      ],
-      drop: function(date, jsEvent, ui, resourceId) {
-        console.log('drop', date.format(), resourceId);
-
-        // is the "remove after drop" checkbox checked?
-        if ($('#drop-remove').is(':checked')) {
-          // if so, remove the element from the "Draggable Events" list
-          $(this).remove();
-        }
-      },
-      eventReceive: function(event) { // called when a proper external event is dropped
-        console.log('eventReceive', event);
-      },
-      eventDrop: function(event) { // called when an event (already on the calendar) is moved
-        console.log('eventDrop', event);
-      }
-    });
-
-  });</script>
-    <style>
+        });
 
 
-        body {
-            margin-top: 40px;
-            text-align: center;
-            font-size: 14px;
-            font-family: "Lucida Grande",Helvetica,Arial,Verdana,sans-serif;
-        }
+        /* initialize the calendar
+        -----------------------------------------------------------------*/
 
-        #wrap {
-            width: 1100px;
-            margin: 0 auto;
-        }
-
-        #external-events {
-            float: left;
-            width: 150px;
-            padding: 0 10px;
-            border: 1px solid #ccc;
-            background: #eee;
-            text-align: left;
-        }
-
-            #external-events h4 {
-                font-size: 16px;
-                margin-top: 0;
-                padding-top: 1em;
-            }
-
-            #external-events .fc-event {
-                margin: 10px 0;
-                cursor: pointer;
-            }
-
-            #external-events p {
-                margin: 1.5em 0;
-                font-size: 11px;
-                color: #666;
-            }
-
-                #external-events p input {
-                    margin: 0;
-                    vertical-align: middle;
+        $('#calendar').fullCalendar({
+            schedulerLicenseKey: 'GPL-My-Project-Is-Open-Source',
+            now: '2020-05-18',
+            editable: true, // enable draggable events
+            droppable: true, // this allows things to be dropped onto the calendar
+            aspectRatio: 1.8,
+            scrollTime: '00:00', // undo default 6am scrollTime
+            header: {
+                left: 'today prev,next',
+                center: 'title',
+                right: 'timelineDay,timelineThreeDays,agendaWeek,month'
+            },
+            defaultView: 'timelineDay',
+            views: {
+                timelineThreeDays: {
+                    type: 'timeline',
+                    duration: {days: 3}
                 }
+            },
+            resourceLabelText: 'Rooms',
+            resources: [
+                {id: 'a', title: 'Auditorium A'},
+                {id: 'b', title: 'Auditorium B', eventColor: 'green'},
+                {id: 'c', title: 'Auditorium C', eventColor: 'orange'},
+                {
+                    id: 'd', title: 'Auditorium D', children: [
+                        {id: 'd1', title: 'Room D1'},
+                        {id: 'd2', title: 'Room D2'}
+                    ]
+                },
+                {id: 'e', title: 'Auditorium E'},
+                {id: 'f', title: 'Auditorium F', eventColor: 'red'},
+                {id: 'g', title: 'Auditorium G'},
+                {id: 'h', title: 'Auditorium H'},
+                {id: 'i', title: 'Auditorium I'},
+                {id: 'j', title: 'Auditorium J'},
+                {id: 'k', title: 'Auditorium K'},
+                {id: 'l', title: 'Auditorium L'},
+                {id: 'm', title: 'Auditorium M'},
+                {id: 'n', title: 'Auditorium N'},
+                {id: 'o', title: 'Auditorium O'},
+                {id: 'p', title: 'Auditorium P'},
+                {id: 'q', title: 'Auditorium Q'},
+                {id: 'r', title: 'Auditorium R'},
+                {id: 's', title: 'Auditorium S'},
+                {id: 't', title: 'Auditorium T'},
+                {id: 'u', title: 'Auditorium U'},
+                {id: 'v', title: 'Auditorium V'},
+                {id: 'w', title: 'Auditorium W'},
+                {id: 'x', title: 'Auditorium X'},
+                {id: 'y', title: 'Auditorium Y'},
+                {id: 'z', title: 'Auditorium Z'}
+            ],
+            events: [
+                {id: '1', resourceId: 'b', start: '2020-05-18T02:00:00', end: '2020-05-18T07:00:00', title: 'Math'},
+                {id: '2', resourceId: 'c', start: '2020-05-18T05:00:00', end: '2020-05-18T22:00:00', title: 'Science'},
+                {id: '3', resourceId: 'd', start: '2020-05-17', end: '2020-05-19', title: 'Free'},
+                {id: '4', resourceId: 'e', start: '2020-05-18T03:00:00', end: '2020-05-18T08:00:00', title: 'Dentist'},
+                {id: '5', resourceId: 'f', start: '2020-05-18T00:30:00', end: '2020-05-18T02:30:00', title: 'Lunch'}
+            ],
+            drop: function (date, jsEvent, ui, resourceId) {
+                console.log('drop', date.format(), resourceId);
 
-        #calendar {
-            float: right;
-            width: 900px;
-        }
-    </style>
-</head>
-<body class="" style="cursor: auto;">
-    <h1>Calendar events</h1>
-    <script type="text/javascript">
-<!--
-        google_ad_client = "ca-pub-9235015264310318";
-        /* bigleaderboard */
-        google_ad_slot = "8943519472";
-        google_ad_width = 728;
-        google_ad_height = 90;
-        //-->
-    </script>
-    <script type="text/javascript"
-            src="http://pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+                // is the "remove after drop" checkbox checked?
+                if ($('#drop-remove').is(':checked')) {
+                    // if so, remove the element from the "Draggable Events" list
+                    $(this).remove();
+                }
+            },
+            eventReceive: function (event) { // called when a proper external event is dropped
+                console.log('eventReceive', event);
+            },
+            eventDrop: function (event) { // called when an event (already on the calendar) is moved
+                console.log('eventDrop', event);
+            }
+        });
 
+    });</script>
+<style>
+    h2 {
+        margin-top: -10px;
+        text-align: center;
+    }
 
+    #wrap {
+        width: 1100px;
+        margin: 0 auto;
+    }
 
+    #calendar {
+        position: static;
+    }
+
+    #external-events {
+        float: left;
+        width: 150px;
+        padding: 0 10px;
+        border: 1px solid #ccc;
+        background: #eee;
+        text-align: left;
+    }
+
+    #external-events h4 {
+        font-size: 16px;
+        margin-top: 0;
+        padding-top: 1em;
+    }
+
+    #external-events .fc-event {
+        color: #fff!important;;
+        background-color: #3a87ad!important;;
+        margin: 10px 0;
+        cursor: pointer;
+    }
+
+    #external-events p {
+        margin: 1.5em 0;
+        font-size: 11px;
+        color: #666;
+    }
+
+    #external-events p input {
+        margin: 0;
+        vertical-align: middle;
+    }
+
+    #calendar {
+        float: right;
+        width: 900px;
+    }
+</style>
+
+<h2>Calendar events</h2>
 
 
 <div id="wrap">
     <div id="wrap">
         <div id="external-events">
             <h4>Drag drop events to schedule</h4>
-            <div class="fc-event ui-draggable ui-draggable-handle" style="z-index: auto; left: 0px; top: 0px;">Math</div>
+            <div class="fc-event ui-draggable ui-draggable-handle" style="z-index: auto; left: 0px; top: 0px;">Math
+            </div>
             <div class="fc-event ui-draggable ui-draggable-handle">Science</div>
             <div class="fc-event ui-draggable ui-draggable-handle">Sports</div>
             <div class="fc-event ui-draggable ui-draggable-handle">Geography</div>
             <div class="fc-event ui-draggable ui-draggable-handle">Anatomy</div>
-            <p>
-                <input type="checkbox" id="drop-remove">
-                <label for="drop-remove">remove after drop</label>
-            </p>
         </div>
-        <div id="calendar" class="fc fc-unthemed fc-ltr"><div class="fc-toolbar fc-header-toolbar"><div class="fc-left"><button type="button" class="fc-today-button fc-button fc-state-default fc-corner-left fc-corner-right fc-state-disabled" disabled="">today</button><div class="fc-button-group"><button type="button" class="fc-prev-button fc-button fc-state-default fc-corner-left" aria-label="prev"><span class="fc-icon fc-icon-left-single-arrow"></span></button><button type="button" class="fc-next-button fc-button fc-state-default fc-corner-right" aria-label="next"><span class="fc-icon fc-icon-right-single-arrow"></span></button></div></div><div class="fc-right"><div class="fc-button-group"><button type="button" class="fc-timelineDay-button fc-button fc-state-default fc-corner-left">day</button><button type="button" class="fc-timelineThreeDays-button fc-button fc-state-default fc-state-active">3 days</button><button type="button" class="fc-agendaWeek-button fc-button fc-state-default">week</button><button type="button" class="fc-month-button fc-button fc-state-default fc-corner-right">month</button></div></div><div class="fc-center"><h2>Apr 7 – 9, 2018</h2></div><div class="fc-clear"></div></div><div class="fc-view-container" style=""><div class="fc-view fc-timelineThreeDays-view fc-timeline fc-unselectable fc-nested"><table class=""> <thead class="fc-head"> <tr> <td class="fc-resource-area fc-widget-header"><div class="fc-scroller-clip"><div class="fc-scroller" style="overflow-x: scroll; overflow-y: hidden; margin: 0px 0px -21px;"><div class="fc-scroller-canvas" style="min-width: 70px;"> <div class="fc-content"><table class="" style="height: 45px;"><colgroup><col class="fc-main-col"></colgroup><tbody><tr><th class="fc-widget-header"><div><div class="fc-cell-content"><span class="fc-expander-space"><span class="fc-icon"></span></span><span class="fc-cell-text">Rooms</span></div></div></th></tr></tbody></table></div> <div class="fc-bg"></div> </div></div></div></td> <td class="fc-divider fc-col-resizer fc-widget-header"></td> <td class="fc-time-area fc-widget-header"><div class="fc-scroller-clip"><div class="fc-scroller" style="overflow-x: scroll; overflow-y: hidden; margin: 0px 0px -21px;"><div class="fc-scroller-canvas fc-gutter-right" style="padding-right: 21px; width: 4341px;"> <div class="fc-content"><table class="" style="height: 45px;"><colgroup><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col></colgroup><tbody><tr><th class="fc-widget-header" data-date="2020-05-18T00:00:00" colspan="48"><div class="fc-cell-content"><span class="fc-cell-text" style="position: relative; visibility: hidden;">Sat 4/7</span></div></th><th class="fc-widget-header" data-date="2018-04-08T00:00:00" colspan="48"><div class="fc-cell-content"><span class="fc-cell-text" style="position: relative;">Sun 4/8</span></div></th><th class="fc-widget-header" data-date="2018-04-09T00:00:00" colspan="48"><div class="fc-cell-content"><span class="fc-cell-text" style="position: relative;">Mon 4/9</span></div></th></tr><tr class="fc-chrono"><th class="fc-widget-header" data-date="2020-05-18T00:00:00" colspan="2"><div class="fc-cell-content"><span class="fc-cell-text">12am</span></div></th><th class="fc-widget-header" data-date="2020-05-18T01:00:00" colspan="2"><div class="fc-cell-content"><span class="fc-cell-text">1am</span></div></th><th class="fc-widget-header" data-date="2020-05-18T02:00:00" colspan="2"><div class="fc-cell-content"><span class="fc-cell-text">2am</span></div></th><th class="fc-widget-header" data-date="2020-05-18T03:00:00" colspan="2"><div class="fc-cell-content"><span class="fc-cell-text">3am</span></div></th><th class="fc-widget-header" data-date="2020-05-18T04:00:00" colspan="2"><div class="fc-cell-content"><span class="fc-cell-text">4am</span></div></th><th class="fc-widget-header" data-date="2020-05-18T05:00:00" colspan="2"><div class="fc-cell-content"><span class="fc-cell-text">5am</span></div></th><th class="fc-widget-header" data-date="2020-05-18T06:00:00" colspan="2"><div class="fc-cell-content"><span class="fc-cell-text">6am</span></div></th><th class="fc-widget-header" data-date="2020-05-18T07:00:00" colspan="2"><div class="fc-cell-content"><span class="fc-cell-text">7am</span></div></th><th class="fc-widget-header" data-date="2020-05-18T08:00:00" colspan="2"><div class="fc-cell-content"><span class="fc-cell-text">8am</span></div></th><th class="fc-widget-header" data-date="2020-05-18T09:00:00" colspan="2"><div class="fc-cell-content"><span class="fc-cell-text">9am</span></div></th><th class="fc-widget-header" data-date="2020-05-18T10:00:00" colspan="2"><div class="fc-cell-content"><span class="fc-cell-text">10am</span></div></th><th class="fc-widget-header" data-date="2020-05-18T11:00:00" colspan="2"><div class="fc-cell-content"><span class="fc-cell-text">11am</span></div></th><th class="fc-widget-header" data-date="2020-05-18T12:00:00" colspan="2"><div class="fc-cell-content"><span class="fc-cell-text">12pm</span></div></th><th class="fc-widget-header" data-date="2020-05-18T13:00:00" colspan="2"><div class="fc-cell-content"><span class="fc-cell-text">1pm</span></div></th><th class="fc-widget-header" data-date="2020-05-18T14:00:00" colspan="2"><div class="fc-cell-content"><span class="fc-cell-text">2pm</span></div></th><th class="fc-widget-header" data-date="2020-05-18T15:00:00" colspan="2"><div class="fc-cell-content"><span class="fc-cell-text">3pm</span></div></th><th class="fc-widget-header" data-date="2020-05-18T16:00:00" colspan="2"><div class="fc-cell-content"><span class="fc-cell-text">4pm</span></div></th><th class="fc-widget-header" data-date="2020-05-18T17:00:00" colspan="2"><div class="fc-cell-content"><span class="fc-cell-text">5pm</span></div></th><th class="fc-widget-header" data-date="2020-05-18T18:00:00" colspan="2"><div class="fc-cell-content"><span class="fc-cell-text">6pm</span></div></th><th class="fc-widget-header" data-date="2020-05-18T19:00:00" colspan="2"><div class="fc-cell-content"><span class="fc-cell-text">7pm</span></div></th><th class="fc-widget-header" data-date="2020-05-18T20:00:00" colspan="2"><div class="fc-cell-content"><span class="fc-cell-text">8pm</span></div></th><th class="fc-widget-header" data-date="2020-05-18T21:00:00" colspan="2"><div class="fc-cell-content"><span class="fc-cell-text">9pm</span></div></th><th class="fc-widget-header" data-date="2020-05-18T22:00:00" colspan="2"><div class="fc-cell-content"><span class="fc-cell-text">10pm</span></div></th><th class="fc-widget-header" data-date="2020-05-18T23:00:00" colspan="2"><div class="fc-cell-content"><span class="fc-cell-text">11pm</span></div></th><th class="fc-widget-header" data-date="2018-04-08T00:00:00" colspan="2"><div class="fc-cell-content"><span class="fc-cell-text">12am</span></div></th><th class="fc-widget-header" data-date="2018-04-08T01:00:00" colspan="2"><div class="fc-cell-content"><span class="fc-cell-text">1am</span></div></th><th class="fc-widget-header" data-date="2018-04-08T02:00:00" colspan="2"><div class="fc-cell-content"><span class="fc-cell-text">2am</span></div></th><th class="fc-widget-header" data-date="2018-04-08T03:00:00" colspan="2"><div class="fc-cell-content"><span class="fc-cell-text">3am</span></div></th><th class="fc-widget-header" data-date="2018-04-08T04:00:00" colspan="2"><div class="fc-cell-content"><span class="fc-cell-text">4am</span></div></th><th class="fc-widget-header" data-date="2018-04-08T05:00:00" colspan="2"><div class="fc-cell-content"><span class="fc-cell-text">5am</span></div></th><th class="fc-widget-header" data-date="2018-04-08T06:00:00" colspan="2"><div class="fc-cell-content"><span class="fc-cell-text">6am</span></div></th><th class="fc-widget-header" data-date="2018-04-08T07:00:00" colspan="2"><div class="fc-cell-content"><span class="fc-cell-text">7am</span></div></th><th class="fc-widget-header" data-date="2018-04-08T08:00:00" colspan="2"><div class="fc-cell-content"><span class="fc-cell-text">8am</span></div></th><th class="fc-widget-header" data-date="2018-04-08T09:00:00" colspan="2"><div class="fc-cell-content"><span class="fc-cell-text">9am</span></div></th><th class="fc-widget-header" data-date="2018-04-08T10:00:00" colspan="2"><div class="fc-cell-content"><span class="fc-cell-text">10am</span></div></th><th class="fc-widget-header" data-date="2018-04-08T11:00:00" colspan="2"><div class="fc-cell-content"><span class="fc-cell-text">11am</span></div></th><th class="fc-widget-header" data-date="2018-04-08T12:00:00" colspan="2"><div class="fc-cell-content"><span class="fc-cell-text">12pm</span></div></th><th class="fc-widget-header" data-date="2018-04-08T13:00:00" colspan="2"><div class="fc-cell-content"><span class="fc-cell-text">1pm</span></div></th><th class="fc-widget-header" data-date="2018-04-08T14:00:00" colspan="2"><div class="fc-cell-content"><span class="fc-cell-text">2pm</span></div></th><th class="fc-widget-header" data-date="2018-04-08T15:00:00" colspan="2"><div class="fc-cell-content"><span class="fc-cell-text">3pm</span></div></th><th class="fc-widget-header" data-date="2018-04-08T16:00:00" colspan="2"><div class="fc-cell-content"><span class="fc-cell-text">4pm</span></div></th><th class="fc-widget-header" data-date="2018-04-08T17:00:00" colspan="2"><div class="fc-cell-content"><span class="fc-cell-text">5pm</span></div></th><th class="fc-widget-header" data-date="2018-04-08T18:00:00" colspan="2"><div class="fc-cell-content"><span class="fc-cell-text">6pm</span></div></th><th class="fc-widget-header" data-date="2018-04-08T19:00:00" colspan="2"><div class="fc-cell-content"><span class="fc-cell-text">7pm</span></div></th><th class="fc-widget-header" data-date="2018-04-08T20:00:00" colspan="2"><div class="fc-cell-content"><span class="fc-cell-text">8pm</span></div></th><th class="fc-widget-header" data-date="2018-04-08T21:00:00" colspan="2"><div class="fc-cell-content"><span class="fc-cell-text">9pm</span></div></th><th class="fc-widget-header" data-date="2018-04-08T22:00:00" colspan="2"><div class="fc-cell-content"><span class="fc-cell-text">10pm</span></div></th><th class="fc-widget-header" data-date="2018-04-08T23:00:00" colspan="2"><div class="fc-cell-content"><span class="fc-cell-text">11pm</span></div></th><th class="fc-widget-header" data-date="2018-04-09T00:00:00" colspan="2"><div class="fc-cell-content"><span class="fc-cell-text">12am</span></div></th><th class="fc-widget-header" data-date="2018-04-09T01:00:00" colspan="2"><div class="fc-cell-content"><span class="fc-cell-text">1am</span></div></th><th class="fc-widget-header" data-date="2018-04-09T02:00:00" colspan="2"><div class="fc-cell-content"><span class="fc-cell-text">2am</span></div></th><th class="fc-widget-header" data-date="2018-04-09T03:00:00" colspan="2"><div class="fc-cell-content"><span class="fc-cell-text">3am</span></div></th><th class="fc-widget-header" data-date="2018-04-09T04:00:00" colspan="2"><div class="fc-cell-content"><span class="fc-cell-text">4am</span></div></th><th class="fc-widget-header" data-date="2018-04-09T05:00:00" colspan="2"><div class="fc-cell-content"><span class="fc-cell-text">5am</span></div></th><th class="fc-widget-header" data-date="2018-04-09T06:00:00" colspan="2"><div class="fc-cell-content"><span class="fc-cell-text">6am</span></div></th><th class="fc-widget-header" data-date="2018-04-09T07:00:00" colspan="2"><div class="fc-cell-content"><span class="fc-cell-text">7am</span></div></th><th class="fc-widget-header" data-date="2018-04-09T08:00:00" colspan="2"><div class="fc-cell-content"><span class="fc-cell-text">8am</span></div></th><th class="fc-widget-header" data-date="2018-04-09T09:00:00" colspan="2"><div class="fc-cell-content"><span class="fc-cell-text">9am</span></div></th><th class="fc-widget-header" data-date="2018-04-09T10:00:00" colspan="2"><div class="fc-cell-content"><span class="fc-cell-text">10am</span></div></th><th class="fc-widget-header" data-date="2018-04-09T11:00:00" colspan="2"><div class="fc-cell-content"><span class="fc-cell-text">11am</span></div></th><th class="fc-widget-header" data-date="2018-04-09T12:00:00" colspan="2"><div class="fc-cell-content"><span class="fc-cell-text">12pm</span></div></th><th class="fc-widget-header" data-date="2018-04-09T13:00:00" colspan="2"><div class="fc-cell-content"><span class="fc-cell-text">1pm</span></div></th><th class="fc-widget-header" data-date="2018-04-09T14:00:00" colspan="2"><div class="fc-cell-content"><span class="fc-cell-text">2pm</span></div></th><th class="fc-widget-header" data-date="2018-04-09T15:00:00" colspan="2"><div class="fc-cell-content"><span class="fc-cell-text">3pm</span></div></th><th class="fc-widget-header" data-date="2018-04-09T16:00:00" colspan="2"><div class="fc-cell-content"><span class="fc-cell-text">4pm</span></div></th><th class="fc-widget-header" data-date="2018-04-09T17:00:00" colspan="2"><div class="fc-cell-content"><span class="fc-cell-text">5pm</span></div></th><th class="fc-widget-header" data-date="2018-04-09T18:00:00" colspan="2"><div class="fc-cell-content"><span class="fc-cell-text">6pm</span></div></th><th class="fc-widget-header" data-date="2018-04-09T19:00:00" colspan="2"><div class="fc-cell-content"><span class="fc-cell-text">7pm</span></div></th><th class="fc-widget-header" data-date="2018-04-09T20:00:00" colspan="2"><div class="fc-cell-content"><span class="fc-cell-text">8pm</span></div></th><th class="fc-widget-header" data-date="2018-04-09T21:00:00" colspan="2"><div class="fc-cell-content"><span class="fc-cell-text">9pm</span></div></th><th class="fc-widget-header" data-date="2018-04-09T22:00:00" colspan="2"><div class="fc-cell-content"><span class="fc-cell-text">10pm</span></div></th><th class="fc-widget-header" data-date="2018-04-09T23:00:00" colspan="2"><div class="fc-cell-content"><span class="fc-cell-text">11pm</span></div></th></tr></tbody></table></div> <div class="fc-bg" style="right: 21px;"></div> </div></div><span class="fc-cell-text fc-following" style="position: absolute; z-index: 1000; font-weight: 700; font-size: 14px; font-family: &quot;Lucida Grande&quot;, Helvetica, Arial, Verdana, sans-serif; text-decoration: none solid rgb(0, 0, 0); color: rgb(0, 0, 0); padding: 0px 4px; top: 3px; left: 285.5px;">Sat 4/7</span></div></td> </tr> </thead> <tbody class="fc-body"> <tr> <td class="fc-resource-area fc-widget-content"><div class="fc-scroller-clip"><div class="fc-scroller" style="overflow-x: auto; overflow-y: scroll; height: 452px; margin: 0px -21px 0px 0px;"><div class="fc-scroller-canvas fc-gutter-bottom" style="min-width: 70px; padding-bottom: 21px;"> <div class="fc-content"><div class="fc-rows"> <table class=""><colgroup><col class="fc-main-col"></colgroup><tbody><tr data-resource-id="a"><td class="fc-widget-content"><div style="height: 32px;"><div class="fc-cell-content"><span class="fc-expander-space"><span class="fc-icon"></span></span><span class="fc-cell-text">Auditorium A</span></div></div></td></tr><tr data-resource-id="b"><td class="fc-widget-content"><div style="height: 32px;"><div class="fc-cell-content"><span class="fc-expander-space"><span class="fc-icon"></span></span><span class="fc-cell-text">Auditorium B</span></div></div></td></tr><tr data-resource-id="c"><td class="fc-widget-content"><div style="height: 32px;"><div class="fc-cell-content"><span class="fc-expander-space"><span class="fc-icon"></span></span><span class="fc-cell-text">Auditorium C</span></div></div></td></tr><tr data-resource-id="d"><td class="fc-widget-content"><div style="height: 32px;"><div class="fc-cell-content"><span class="fc-expander-space fc-expander"><span class="fc-icon fc-icon-down-triangle"></span></span><span class="fc-cell-text">Auditorium D</span></div></div></td></tr><tr data-resource-id="d1"><td class="fc-widget-content"><div style="height: 32px;"><div class="fc-cell-content"><span class="fc-icon"></span><span class="fc-expander-space"><span class="fc-icon"></span></span><span class="fc-cell-text">Room D1</span></div></div></td></tr><tr data-resource-id="d2"><td class="fc-widget-content"><div style="height: 32px;"><div class="fc-cell-content"><span class="fc-icon"></span><span class="fc-expander-space"><span class="fc-icon"></span></span><span class="fc-cell-text">Room D2</span></div></div></td></tr><tr data-resource-id="e"><td class="fc-widget-content"><div style="height: 32px;"><div class="fc-cell-content"><span class="fc-expander-space"><span class="fc-icon"></span></span><span class="fc-cell-text">Auditorium E</span></div></div></td></tr><tr data-resource-id="f"><td class="fc-widget-content"><div style="height: 32px;"><div class="fc-cell-content"><span class="fc-expander-space"><span class="fc-icon"></span></span><span class="fc-cell-text">Auditorium F</span></div></div></td></tr><tr data-resource-id="g"><td class="fc-widget-content"><div style="height: 32px;"><div class="fc-cell-content"><span class="fc-expander-space"><span class="fc-icon"></span></span><span class="fc-cell-text">Auditorium G</span></div></div></td></tr><tr data-resource-id="h"><td class="fc-widget-content"><div style="height: 32px;"><div class="fc-cell-content"><span class="fc-expander-space"><span class="fc-icon"></span></span><span class="fc-cell-text">Auditorium H</span></div></div></td></tr><tr data-resource-id="i"><td class="fc-widget-content"><div style="height: 32px;"><div class="fc-cell-content"><span class="fc-expander-space"><span class="fc-icon"></span></span><span class="fc-cell-text">Auditorium I</span></div></div></td></tr><tr data-resource-id="j"><td class="fc-widget-content"><div style="height: 32px;"><div class="fc-cell-content"><span class="fc-expander-space"><span class="fc-icon"></span></span><span class="fc-cell-text">Auditorium J</span></div></div></td></tr><tr data-resource-id="k"><td class="fc-widget-content"><div style="height: 32px;"><div class="fc-cell-content"><span class="fc-expander-space"><span class="fc-icon"></span></span><span class="fc-cell-text">Auditorium K</span></div></div></td></tr><tr data-resource-id="l"><td class="fc-widget-content"><div style="height: 32px;"><div class="fc-cell-content"><span class="fc-expander-space"><span class="fc-icon"></span></span><span class="fc-cell-text">Auditorium L</span></div></div></td></tr><tr data-resource-id="m"><td class="fc-widget-content"><div style="height: 32px;"><div class="fc-cell-content"><span class="fc-expander-space"><span class="fc-icon"></span></span><span class="fc-cell-text">Auditorium M</span></div></div></td></tr><tr data-resource-id="n"><td class="fc-widget-content"><div style="height: 32px;"><div class="fc-cell-content"><span class="fc-expander-space"><span class="fc-icon"></span></span><span class="fc-cell-text">Auditorium N</span></div></div></td></tr><tr data-resource-id="o"><td class="fc-widget-content"><div style="height: 32px;"><div class="fc-cell-content"><span class="fc-expander-space"><span class="fc-icon"></span></span><span class="fc-cell-text">Auditorium O</span></div></div></td></tr><tr data-resource-id="p"><td class="fc-widget-content"><div style="height: 32px;"><div class="fc-cell-content"><span class="fc-expander-space"><span class="fc-icon"></span></span><span class="fc-cell-text">Auditorium P</span></div></div></td></tr><tr data-resource-id="q"><td class="fc-widget-content"><div style="height: 32px;"><div class="fc-cell-content"><span class="fc-expander-space"><span class="fc-icon"></span></span><span class="fc-cell-text">Auditorium Q</span></div></div></td></tr><tr data-resource-id="r"><td class="fc-widget-content"><div style="height: 32px;"><div class="fc-cell-content"><span class="fc-expander-space"><span class="fc-icon"></span></span><span class="fc-cell-text">Auditorium R</span></div></div></td></tr><tr data-resource-id="s"><td class="fc-widget-content"><div style="height: 32px;"><div class="fc-cell-content"><span class="fc-expander-space"><span class="fc-icon"></span></span><span class="fc-cell-text">Auditorium S</span></div></div></td></tr><tr data-resource-id="t"><td class="fc-widget-content"><div style="height: 32px;"><div class="fc-cell-content"><span class="fc-expander-space"><span class="fc-icon"></span></span><span class="fc-cell-text">Auditorium T</span></div></div></td></tr><tr data-resource-id="u"><td class="fc-widget-content"><div style="height: 32px;"><div class="fc-cell-content"><span class="fc-expander-space"><span class="fc-icon"></span></span><span class="fc-cell-text">Auditorium U</span></div></div></td></tr><tr data-resource-id="v"><td class="fc-widget-content"><div style="height: 32px;"><div class="fc-cell-content"><span class="fc-expander-space"><span class="fc-icon"></span></span><span class="fc-cell-text">Auditorium V</span></div></div></td></tr><tr data-resource-id="w"><td class="fc-widget-content"><div style="height: 32px;"><div class="fc-cell-content"><span class="fc-expander-space"><span class="fc-icon"></span></span><span class="fc-cell-text">Auditorium W</span></div></div></td></tr><tr data-resource-id="x"><td class="fc-widget-content"><div style="height: 32px;"><div class="fc-cell-content"><span class="fc-expander-space"><span class="fc-icon"></span></span><span class="fc-cell-text">Auditorium X</span></div></div></td></tr><tr data-resource-id="y"><td class="fc-widget-content"><div style="height: 32px;"><div class="fc-cell-content"><span class="fc-expander-space"><span class="fc-icon"></span></span><span class="fc-cell-text">Auditorium Y</span></div></div></td></tr><tr data-resource-id="z"><td class="fc-widget-content"><div style="height: 32px;"><div class="fc-cell-content"><span class="fc-expander-space"><span class="fc-icon"></span></span><span class="fc-cell-text">Auditorium Z</span></div></div></td></tr></tbody> </table> </div></div> <div class="fc-bg" style="bottom: 21px;"></div> </div></div></div></td> <td class="fc-divider fc-col-resizer fc-widget-header"></td> <td class="fc-time-area fc-widget-content"><div class="fc-scroller-clip"><div class="fc-scroller" style="overflow: auto; height: 452px; margin: 0px;"><div class="fc-scroller-canvas" style="width: 4320px; min-width: 0px;"> <div class="fc-content"><div class="fc-rows"> <table class=""> <tbody><tr data-resource-id="a"><td class="fc-widget-content"> <div style="height: 32px;"> <div class="fc-event-container"></div> </div> </td></tr><tr data-resource-id="b"><td class="fc-widget-content"> <div style="height: 32px;"> <div class="fc-event-container" style="height: 22px;"><a class="fc-timeline-event fc-h-event fc-event fc-start fc-end fc-draggable fc-resizable" style="background-color: green; border-color: green; left: 121px; right: -421px; top: 0px;"><div class="fc-content"><span class="fc-title" style="top: 0px; left: 0px;">event 1</span></div><div class="fc-bg"></div><div class="fc-resizer fc-start-resizer"></div><div class="fc-resizer fc-end-resizer"></div></a></div> </div> </td></tr><tr data-resource-id="c"><td class="fc-widget-content"> <div style="height: 32px;"> <div class="fc-event-container" style="height: 22px;"><a class="fc-timeline-event fc-h-event fc-event fc-start fc-end fc-draggable fc-resizable" style="background-color: orange; border-color: orange; left: 301px; right: -1321px; top: 0px;"><div class="fc-content"><span class="fc-title" style="top: 0px; left: 0px;">event 2</span></div><div class="fc-bg"></div><div class="fc-resizer fc-start-resizer"></div><div class="fc-resizer fc-end-resizer"></div></a></div> </div> </td></tr><tr data-resource-id="d"><td class="fc-widget-content"> <div style="height: 32px;"> <div class="fc-event-container" style="height: 22px;"><a class="fc-timeline-event fc-h-event fc-event fc-not-start fc-end fc-draggable fc-resizable" style="left: 0px; right: -1441px; top: 0px;"><div class="fc-content"><span class="fc-title" style="top: 0px; left: 0px;">event 3</span></div><div class="fc-bg"></div><div class="fc-resizer fc-end-resizer"></div></a></div> </div> </td></tr><tr data-resource-id="d1"><td class="fc-widget-content"> <div style="height: 32px;"> <div class="fc-event-container"></div> </div> </td></tr><tr data-resource-id="d2"><td class="fc-widget-content"> <div style="height: 32px;"> <div class="fc-event-container"></div> </div> </td></tr><tr data-resource-id="e"><td class="fc-widget-content"> <div style="height: 32px;"> <div class="fc-event-container" style="height: 22px;"><a class="fc-timeline-event fc-h-event fc-event fc-start fc-end fc-draggable fc-resizable" style="left: 181px; right: -481px; top: 0px;"><div class="fc-content"><span class="fc-title" style="top: 0px; left: 0px;">event 4</span></div><div class="fc-bg"></div><div class="fc-resizer fc-start-resizer"></div><div class="fc-resizer fc-end-resizer"></div></a></div> </div> </td></tr><tr data-resource-id="f"><td class="fc-widget-content"> <div style="height: 32px;"> <div class="fc-event-container" style="height: 22px;"><a class="fc-timeline-event fc-h-event fc-event fc-start fc-end fc-draggable fc-resizable" style="background-color: red; border-color: red; left: 31px; right: -151px; top: 0px;"><div class="fc-content"><span class="fc-title" style="top: 0px; left: 0px;">event 5</span></div><div class="fc-bg"></div><div class="fc-resizer fc-start-resizer"></div><div class="fc-resizer fc-end-resizer"></div></a></div> </div> </td></tr><tr data-resource-id="g"><td class="fc-widget-content"> <div style="height: 32px;"> <div class="fc-event-container"></div> </div> </td></tr><tr data-resource-id="h"><td class="fc-widget-content"> <div style="height: 32px;"> <div class="fc-event-container"></div> </div> </td></tr><tr data-resource-id="i"><td class="fc-widget-content"> <div style="height: 32px;"> <div class="fc-event-container"></div> </div> </td></tr><tr data-resource-id="j"><td class="fc-widget-content"> <div style="height: 32px;"> <div class="fc-event-container" style="height: 22px;"><a class="fc-timeline-event fc-h-event fc-event fc-start fc-end fc-draggable fc-resizable" style="left: 181px; right: -301px; top: 0px;"><div class="fc-content"><span class="fc-title" style="top: 0px; left: 0px;">Math</span></div><div class="fc-bg"></div><div class="fc-resizer fc-start-resizer"></div><div class="fc-resizer fc-end-resizer"></div></a></div> </div> </td></tr><tr data-resource-id="k"><td class="fc-widget-content"> <div style="height: 32px;"> <div class="fc-event-container"></div> </div> </td></tr><tr data-resource-id="l"><td class="fc-widget-content"> <div style="height: 32px;"> <div class="fc-event-container"></div> </div> </td></tr><tr data-resource-id="m"><td class="fc-widget-content"> <div style="height: 32px;"> <div class="fc-event-container"></div> </div> </td></tr><tr data-resource-id="n"><td class="fc-widget-content"> <div style="height: 32px;"> <div class="fc-event-container"></div> </div> </td></tr><tr data-resource-id="o"><td class="fc-widget-content"> <div style="height: 32px;"> <div class="fc-event-container"></div> </div> </td></tr><tr data-resource-id="p"><td class="fc-widget-content"> <div style="height: 32px;"> <div class="fc-event-container"></div> </div> </td></tr><tr data-resource-id="q"><td class="fc-widget-content"> <div style="height: 32px;"> <div class="fc-event-container"></div> </div> </td></tr><tr data-resource-id="r"><td class="fc-widget-content"> <div style="height: 32px;"> <div class="fc-event-container"></div> </div> </td></tr><tr data-resource-id="s"><td class="fc-widget-content"> <div style="height: 32px;"> <div class="fc-event-container"></div> </div> </td></tr><tr data-resource-id="t"><td class="fc-widget-content"> <div style="height: 32px;"> <div class="fc-event-container"></div> </div> </td></tr><tr data-resource-id="u"><td class="fc-widget-content"> <div style="height: 32px;"> <div class="fc-event-container"></div> </div> </td></tr><tr data-resource-id="v"><td class="fc-widget-content"> <div style="height: 32px;"> <div class="fc-event-container"></div> </div> </td></tr><tr data-resource-id="w"><td class="fc-widget-content"> <div style="height: 32px;"> <div class="fc-event-container"></div> </div> </td></tr><tr data-resource-id="x"><td class="fc-widget-content"> <div style="height: 32px;"> <div class="fc-event-container"></div> </div> </td></tr><tr data-resource-id="y"><td class="fc-widget-content"> <div style="height: 32px;"> <div class="fc-event-container"></div> </div> </td></tr><tr data-resource-id="z"><td class="fc-widget-content"> <div style="height: 32px;"> <div class="fc-event-container"></div> </div> </td></tr></tbody> </table> </div></div> <div class="fc-bg"><div class="fc-slats"><table class=""><colgroup><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col style="width: 30px;"><col></colgroup><tbody><tr><td class="fc-widget-content fc-major" data-date="2020-05-18T00:00:00"><div></div></td><td class="fc-widget-content fc-minor" data-date="2020-05-18T00:30:00"><div></div></td><td class="fc-widget-content fc-major" data-date="2020-05-18T01:00:00"><div></div></td><td class="fc-widget-content fc-minor" data-date="2020-05-18T01:30:00"><div></div></td><td class="fc-widget-content fc-major" data-date="2020-05-18T02:00:00"><div></div></td><td class="fc-widget-content fc-minor" data-date="2020-05-18T02:30:00"><div></div></td><td class="fc-widget-content fc-major" data-date="2020-05-18T03:00:00"><div></div></td><td class="fc-widget-content fc-minor" data-date="2020-05-18T03:30:00"><div></div></td><td class="fc-widget-content fc-major" data-date="2020-05-18T04:00:00"><div></div></td><td class="fc-widget-content fc-minor" data-date="2020-05-18T04:30:00"><div></div></td><td class="fc-widget-content fc-major" data-date="2020-05-18T05:00:00"><div></div></td><td class="fc-widget-content fc-minor" data-date="2020-05-18T05:30:00"><div></div></td><td class="fc-widget-content fc-major" data-date="2020-05-18T06:00:00"><div></div></td><td class="fc-widget-content fc-minor" data-date="2020-05-18T06:30:00"><div></div></td><td class="fc-widget-content fc-major" data-date="2020-05-18T07:00:00"><div></div></td><td class="fc-widget-content fc-minor" data-date="2020-05-18T07:30:00"><div></div></td><td class="fc-widget-content fc-major" data-date="2020-05-18T08:00:00"><div></div></td><td class="fc-widget-content fc-minor" data-date="2020-05-18T08:30:00"><div></div></td><td class="fc-widget-content fc-major" data-date="2020-05-18T09:00:00"><div></div></td><td class="fc-widget-content fc-minor" data-date="2020-05-18T09:30:00"><div></div></td><td class="fc-widget-content fc-major" data-date="2020-05-18T10:00:00"><div></div></td><td class="fc-widget-content fc-minor" data-date="2020-05-18T10:30:00"><div></div></td><td class="fc-widget-content fc-major" data-date="2020-05-18T11:00:00"><div></div></td><td class="fc-widget-content fc-minor" data-date="2020-05-18T11:30:00"><div></div></td><td class="fc-widget-content fc-major" data-date="2020-05-18T12:00:00"><div></div></td><td class="fc-widget-content fc-minor" data-date="2020-05-18T12:30:00"><div></div></td><td class="fc-widget-content fc-major" data-date="2020-05-18T13:00:00"><div></div></td><td class="fc-widget-content fc-minor" data-date="2020-05-18T13:30:00"><div></div></td><td class="fc-widget-content fc-major" data-date="2020-05-18T14:00:00"><div></div></td><td class="fc-widget-content fc-minor" data-date="2020-05-18T14:30:00"><div></div></td><td class="fc-widget-content fc-major" data-date="2020-05-18T15:00:00"><div></div></td><td class="fc-widget-content fc-minor" data-date="2020-05-18T15:30:00"><div></div></td><td class="fc-widget-content fc-major" data-date="2020-05-18T16:00:00"><div></div></td><td class="fc-widget-content fc-minor" data-date="2020-05-18T16:30:00"><div></div></td><td class="fc-widget-content fc-major" data-date="2020-05-18T17:00:00"><div></div></td><td class="fc-widget-content fc-minor" data-date="2020-05-18T17:30:00"><div></div></td><td class="fc-widget-content fc-major" data-date="2020-05-18T18:00:00"><div></div></td><td class="fc-widget-content fc-minor" data-date="2020-05-18T18:30:00"><div></div></td><td class="fc-widget-content fc-major" data-date="2020-05-18T19:00:00"><div></div></td><td class="fc-widget-content fc-minor" data-date="2020-05-18T19:30:00"><div></div></td><td class="fc-widget-content fc-major" data-date="2020-05-18T20:00:00"><div></div></td><td class="fc-widget-content fc-minor" data-date="2020-05-18T20:30:00"><div></div></td><td class="fc-widget-content fc-major" data-date="2020-05-18T21:00:00"><div></div></td><td class="fc-widget-content fc-minor" data-date="2020-05-18T21:30:00"><div></div></td><td class="fc-widget-content fc-major" data-date="2020-05-18T22:00:00"><div></div></td><td class="fc-widget-content fc-minor" data-date="2020-05-18T22:30:00"><div></div></td><td class="fc-widget-content fc-major" data-date="2020-05-18T23:00:00"><div></div></td><td class="fc-widget-content fc-minor" data-date="2020-05-18T23:30:00"><div></div></td><td class="fc-widget-content fc-major" data-date="2018-04-08T00:00:00"><div></div></td><td class="fc-widget-content fc-minor" data-date="2018-04-08T00:30:00"><div></div></td><td class="fc-widget-content fc-major" data-date="2018-04-08T01:00:00"><div></div></td><td class="fc-widget-content fc-minor" data-date="2018-04-08T01:30:00"><div></div></td><td class="fc-widget-content fc-major" data-date="2018-04-08T02:00:00"><div></div></td><td class="fc-widget-content fc-minor" data-date="2018-04-08T02:30:00"><div></div></td><td class="fc-widget-content fc-major" data-date="2018-04-08T03:00:00"><div></div></td><td class="fc-widget-content fc-minor" data-date="2018-04-08T03:30:00"><div></div></td><td class="fc-widget-content fc-major" data-date="2018-04-08T04:00:00"><div></div></td><td class="fc-widget-content fc-minor" data-date="2018-04-08T04:30:00"><div></div></td><td class="fc-widget-content fc-major" data-date="2018-04-08T05:00:00"><div></div></td><td class="fc-widget-content fc-minor" data-date="2018-04-08T05:30:00"><div></div></td><td class="fc-widget-content fc-major" data-date="2018-04-08T06:00:00"><div></div></td><td class="fc-widget-content fc-minor" data-date="2018-04-08T06:30:00"><div></div></td><td class="fc-widget-content fc-major" data-date="2018-04-08T07:00:00"><div></div></td><td class="fc-widget-content fc-minor" data-date="2018-04-08T07:30:00"><div></div></td><td class="fc-widget-content fc-major" data-date="2018-04-08T08:00:00"><div></div></td><td class="fc-widget-content fc-minor" data-date="2018-04-08T08:30:00"><div></div></td><td class="fc-widget-content fc-major" data-date="2018-04-08T09:00:00"><div></div></td><td class="fc-widget-content fc-minor" data-date="2018-04-08T09:30:00"><div></div></td><td class="fc-widget-content fc-major" data-date="2018-04-08T10:00:00"><div></div></td><td class="fc-widget-content fc-minor" data-date="2018-04-08T10:30:00"><div></div></td><td class="fc-widget-content fc-major" data-date="2018-04-08T11:00:00"><div></div></td><td class="fc-widget-content fc-minor" data-date="2018-04-08T11:30:00"><div></div></td><td class="fc-widget-content fc-major" data-date="2018-04-08T12:00:00"><div></div></td><td class="fc-widget-content fc-minor" data-date="2018-04-08T12:30:00"><div></div></td><td class="fc-widget-content fc-major" data-date="2018-04-08T13:00:00"><div></div></td><td class="fc-widget-content fc-minor" data-date="2018-04-08T13:30:00"><div></div></td><td class="fc-widget-content fc-major" data-date="2018-04-08T14:00:00"><div></div></td><td class="fc-widget-content fc-minor" data-date="2018-04-08T14:30:00"><div></div></td><td class="fc-widget-content fc-major" data-date="2018-04-08T15:00:00"><div></div></td><td class="fc-widget-content fc-minor" data-date="2018-04-08T15:30:00"><div></div></td><td class="fc-widget-content fc-major" data-date="2018-04-08T16:00:00"><div></div></td><td class="fc-widget-content fc-minor" data-date="2018-04-08T16:30:00"><div></div></td><td class="fc-widget-content fc-major" data-date="2018-04-08T17:00:00"><div></div></td><td class="fc-widget-content fc-minor" data-date="2018-04-08T17:30:00"><div></div></td><td class="fc-widget-content fc-major" data-date="2018-04-08T18:00:00"><div></div></td><td class="fc-widget-content fc-minor" data-date="2018-04-08T18:30:00"><div></div></td><td class="fc-widget-content fc-major" data-date="2018-04-08T19:00:00"><div></div></td><td class="fc-widget-content fc-minor" data-date="2018-04-08T19:30:00"><div></div></td><td class="fc-widget-content fc-major" data-date="2018-04-08T20:00:00"><div></div></td><td class="fc-widget-content fc-minor" data-date="2018-04-08T20:30:00"><div></div></td><td class="fc-widget-content fc-major" data-date="2018-04-08T21:00:00"><div></div></td><td class="fc-widget-content fc-minor" data-date="2018-04-08T21:30:00"><div></div></td><td class="fc-widget-content fc-major" data-date="2018-04-08T22:00:00"><div></div></td><td class="fc-widget-content fc-minor" data-date="2018-04-08T22:30:00"><div></div></td><td class="fc-widget-content fc-major" data-date="2018-04-08T23:00:00"><div></div></td><td class="fc-widget-content fc-minor" data-date="2018-04-08T23:30:00"><div></div></td><td class="fc-widget-content fc-major" data-date="2018-04-09T00:00:00"><div></div></td><td class="fc-widget-content fc-minor" data-date="2018-04-09T00:30:00"><div></div></td><td class="fc-widget-content fc-major" data-date="2018-04-09T01:00:00"><div></div></td><td class="fc-widget-content fc-minor" data-date="2018-04-09T01:30:00"><div></div></td><td class="fc-widget-content fc-major" data-date="2018-04-09T02:00:00"><div></div></td><td class="fc-widget-content fc-minor" data-date="2018-04-09T02:30:00"><div></div></td><td class="fc-widget-content fc-major" data-date="2018-04-09T03:00:00"><div></div></td><td class="fc-widget-content fc-minor" data-date="2018-04-09T03:30:00"><div></div></td><td class="fc-widget-content fc-major" data-date="2018-04-09T04:00:00"><div></div></td><td class="fc-widget-content fc-minor" data-date="2018-04-09T04:30:00"><div></div></td><td class="fc-widget-content fc-major" data-date="2018-04-09T05:00:00"><div></div></td><td class="fc-widget-content fc-minor" data-date="2018-04-09T05:30:00"><div></div></td><td class="fc-widget-content fc-major" data-date="2018-04-09T06:00:00"><div></div></td><td class="fc-widget-content fc-minor" data-date="2018-04-09T06:30:00"><div></div></td><td class="fc-widget-content fc-major" data-date="2018-04-09T07:00:00"><div></div></td><td class="fc-widget-content fc-minor" data-date="2018-04-09T07:30:00"><div></div></td><td class="fc-widget-content fc-major" data-date="2018-04-09T08:00:00"><div></div></td><td class="fc-widget-content fc-minor" data-date="2018-04-09T08:30:00"><div></div></td><td class="fc-widget-content fc-major" data-date="2018-04-09T09:00:00"><div></div></td><td class="fc-widget-content fc-minor" data-date="2018-04-09T09:30:00"><div></div></td><td class="fc-widget-content fc-major" data-date="2018-04-09T10:00:00"><div></div></td><td class="fc-widget-content fc-minor" data-date="2018-04-09T10:30:00"><div></div></td><td class="fc-widget-content fc-major" data-date="2018-04-09T11:00:00"><div></div></td><td class="fc-widget-content fc-minor" data-date="2018-04-09T11:30:00"><div></div></td><td class="fc-widget-content fc-major" data-date="2018-04-09T12:00:00"><div></div></td><td class="fc-widget-content fc-minor" data-date="2018-04-09T12:30:00"><div></div></td><td class="fc-widget-content fc-major" data-date="2018-04-09T13:00:00"><div></div></td><td class="fc-widget-content fc-minor" data-date="2018-04-09T13:30:00"><div></div></td><td class="fc-widget-content fc-major" data-date="2018-04-09T14:00:00"><div></div></td><td class="fc-widget-content fc-minor" data-date="2018-04-09T14:30:00"><div></div></td><td class="fc-widget-content fc-major" data-date="2018-04-09T15:00:00"><div></div></td><td class="fc-widget-content fc-minor" data-date="2018-04-09T15:30:00"><div></div></td><td class="fc-widget-content fc-major" data-date="2018-04-09T16:00:00"><div></div></td><td class="fc-widget-content fc-minor" data-date="2018-04-09T16:30:00"><div></div></td><td class="fc-widget-content fc-major" data-date="2018-04-09T17:00:00"><div></div></td><td class="fc-widget-content fc-minor" data-date="2018-04-09T17:30:00"><div></div></td><td class="fc-widget-content fc-major" data-date="2018-04-09T18:00:00"><div></div></td><td class="fc-widget-content fc-minor" data-date="2018-04-09T18:30:00"><div></div></td><td class="fc-widget-content fc-major" data-date="2018-04-09T19:00:00"><div></div></td><td class="fc-widget-content fc-minor" data-date="2018-04-09T19:30:00"><div></div></td><td class="fc-widget-content fc-major" data-date="2018-04-09T20:00:00"><div></div></td><td class="fc-widget-content fc-minor" data-date="2018-04-09T20:30:00"><div></div></td><td class="fc-widget-content fc-major" data-date="2018-04-09T21:00:00"><div></div></td><td class="fc-widget-content fc-minor" data-date="2018-04-09T21:30:00"><div></div></td><td class="fc-widget-content fc-major" data-date="2018-04-09T22:00:00"><div></div></td><td class="fc-widget-content fc-minor" data-date="2018-04-09T22:30:00"><div></div></td><td class="fc-widget-content fc-major" data-date="2018-04-09T23:00:00"><div></div></td><td class="fc-widget-content fc-minor" data-date="2018-04-09T23:30:00"><div></div></td></tr></tbody></table></div></div> </div></div></div></td> </tr> </tbody> </table></div></div></div>
+        <div id="calendar" class="fc fc-unthemed fc-ltr">
+
+
+        </div>
         <div style="clear:both"></div>
     </div>
-
-
 </div>
 
-
-
-    <script type="text/javascript">
-<!--
-        google_ad_client = "ca-pub-9235015264310318";
-        /* bigleaderboard */
-        google_ad_slot = "8943519472";
-        google_ad_width = 728;
-        google_ad_height = 90;
-//-->
-    </script>
-    <script type="text/javascript"
-            src="http://pagead2.googlesyndication.com/pagead/show_ads.js"></script>
-
-    <br /><br /><a href="/home/about">Privacy policy</a>
-    <br /><br /><a href="/home/contact">Contact us</a>
-</body>
-</html>
