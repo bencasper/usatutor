@@ -7,6 +7,33 @@
 {% endblock %}
 
 {% block content %}
-{% include "./schedule_editor.html" %}
+{% endblock %}
+
+{% block footer %}
+<div id="footer">
+    <footer class="footer">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-xs-12 col-sm-3 footer-links">
+                </div>
+                <div class="col-xs-12 col-sm-6 text-sm-center footer-copyright">
+                    Copyright &copy;
+                    <span class="hidden-md-down">2013-</span>2020 usatutor.com
+                    <br>Developed by
+                    <a href="http://usatutor.com" target="_blank">Usatutor.com</a>
+                </div>
+                <div class="col-xs-12 col-sm-3 text-sm-right footer-version">
+                    UAS TUTOR
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/static/suit/js/suit.js"></script>
+    <script type="text/javascript">
+        Suit.$("#_form").suitFormDebounce();
+        Suit.FixedBar.init();
+    </script>
+</div>
 {% endblock %}
 
