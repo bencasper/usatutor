@@ -24,7 +24,8 @@ class userScheduleAdmin(admin.ModelAdmin):
             'fullcalendar.print.min.css',
             'scheduler.min.css',
         ]
-        return forms.Media(js=['useradmin/js/%s' % url for url in js])
+        return forms.Media(css={'all': ['useradmin/css/%s' % url for url in css]},
+                           js=['useradmin/js/%s' % url for url in js])
 
     def render_change_form(self, request, context, add=False, change=False, form_url='', obj=None):
         context.update({
@@ -34,4 +35,5 @@ class userScheduleAdmin(admin.ModelAdmin):
         request.current_app = self.admin_site.name
 
         return TemplateResponse(request, form_template, context)
+
     pass
