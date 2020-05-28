@@ -2,23 +2,26 @@ from django.db import models
 
 
 class CourseContent(models.Model):
-    level_id = models.PositiveIntegerField()
-    course_name = models.CharField(max_length=100)
-    course_desc = models.CharField(max_length=255)
-    edit_by = models.PositiveIntegerField()
-    update_time = models.DateTimeField()
-    create_time = models.DateTimeField()
+    course_name = models.CharField(max_length=100, null=False, blank=False)
+    course_desc = models.CharField(max_length=255, null=False, default='')
+    edit_by = models.PositiveIntegerField(null=False)
+    update_time = models.DateTimeField(auto_now=True)
+    create_time = models.DateTimeField(auto_now_add=True)
 
     class Meta:
         db_table = 'course_content'
+        verbose_name = 'Course'
+        verbose_name_plural = 'Courses'
 
 
 class CourseLevel(models.Model):
-    level_name = models.CharField(max_length=100)
-    level_desc = models.CharField(max_length=255)
-    edit_by = models.PositiveIntegerField()
-    update_time = models.DateTimeField()
-    create_time = models.DateTimeField()
+    level_name = models.CharField(max_length=100, null=False, blank=False)
+    level_desc = models.CharField(max_length=255, null=False, blank=False)
+    edit_by = models.PositiveIntegerField(null=False)
+    update_time = models.DateTimeField(auto_now=True)
+    create_time = models.DateTimeField(auto_now_add=True)
 
     class Meta:
         db_table = 'course_level'
+        verbose_name = 'Course Level'
+        verbose_name_plural = 'Course Levels'

@@ -1,24 +1,19 @@
 from django.db import models
 
 
-class TextbookCategory(models.Model):
-    category_name = models.CharField(max_length=100)
-    catetory_desc = models.CharField(max_length=255)
-    edit_by = models.PositiveIntegerField()
-    update_time = models.DateTimeField()
-    create_time = models.DateTimeField()
-
-    class Meta:
-        db_table = 'textbook_category'
-
-
 class TextbookContent(models.Model):
-    textbook_title = models.CharField(max_length=100)
-    textbook_url = models.CharField(max_length=255)
-    textbook_desc = models.CharField(max_length=255)
-    edit_by = models.PositiveIntegerField()
-    update_time = models.DateTimeField()
-    create_time = models.DateTimeField()
+    level_id = models.PositiveIntegerField(null=False)
+    unit = models.CharField(max_length=100, null=False)
+    unit_name = models.CharField(max_length=255, null=False)
+    textbook_title = models.CharField(max_length=100, null=False)
+    textbook_url = models.URLField(max_length=255, null=False, default='')
+    textbook_desc = models.CharField(max_length=255, null=False, default='')
+    tag = models.CharField(max_length=255, null=False, default='')
+    edit_by = models.PositiveIntegerField(null=False)
+    update_time = models.DateTimeField(auto_now=True)
+    create_time = models.DateTimeField(auto_now_add=True)
 
     class Meta:
         db_table = 'textbook_content'
+        verbose_name = 'TEXTBOOK'
+        verbose_name_plural = 'TEXTBOOKS'
