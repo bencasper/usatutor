@@ -6,5 +6,7 @@ from .models import SaleOrder, SaleOrderCourse, SaleOrderPayment, SaleOrderFinan
 
 @admin.register(SaleOrder, SaleOrderCourse, SaleOrderPayment, SaleOrderFinance)
 class SaleAdmin(admin.ModelAdmin):
+    def has_add_permission(self, request, obj=None):
+        return False
 
     pass
