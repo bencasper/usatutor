@@ -37,7 +37,7 @@ class ImportTextbookFromExcel(unittest.TestCase):
                                            unit_title=sheet.cell(row, 2).value,
                                            textbook_title=sheet.cell(row, 3).value,
                                            grammar=sheet.cell(row, 4).value,
-                                           textbook_url=sheet.cell(row, 5).value,
+                                           cover_img=sheet.cell(row, 5).value,
                                            edit_by='admin'
                                            )
 
