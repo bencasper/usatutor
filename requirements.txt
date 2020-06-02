@@ -4,3 +4,4 @@ Pillow>=7
 django-simple-captcha
 djangorestframework
 testfixtures==6.14.1
+xlrd
