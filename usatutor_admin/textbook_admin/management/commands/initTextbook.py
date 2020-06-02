@@ -32,13 +32,13 @@ class ImportTextbookFromExcel(unittest.TestCase):
         sheet = wb.sheet_by_index(0)
         print(sheet.nrows, sheet.ncols)
         for row in range(1, sheet.nrows):
-            TextbookContent.objects.create(level_name=sheet.cell(row, 0),
-                                           unit=sheet.cell(row, 1),
-                                           unit_title=sheet.cell(row, 2),
-                                           textbook_title=sheet.cell(row, 3),
-                                           grammar=sheet.cell(row, 4),
-                                           textbook_url=sheet.cell(row, 5),
-                                           edit_by=1
+            TextbookContent.objects.create(level_name=sheet.cell(row, 0).value,
+                                           unit=sheet.cell(row, 1).value,
+                                           unit_title=sheet.cell(row, 2).value,
+                                           textbook_title=sheet.cell(row, 3).value,
+                                           grammar=sheet.cell(row, 4).value,
+                                           textbook_url=sheet.cell(row, 5).value,
+                                           edit_by='admin'
                                            )
 
 

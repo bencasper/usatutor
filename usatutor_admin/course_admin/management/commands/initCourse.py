@@ -24,7 +24,7 @@ class TestChronology(unittest.TestCase):
         Tests that 1 + 1 always equals 2.
         """
         self.assertEqual(1 + 1, 2)
-        CourseLevel.objects.create(level_name="basic", edit_by=1)
+        CourseLevel.objects.create(level_name="basic", edit_by='admin')
 
 
 

@@ -28,7 +28,7 @@ class UserTutorResume(models.Model):
     tutor_id = models.PositiveIntegerField()
     resume_item = models.CharField(max_length=255, null=False)
     resume_order = models.PositiveSmallIntegerField(null=False, default=1)
-    edit_by = models.PositiveIntegerField(null=False)
+    edit_by = models.CharField(max_length=100, null=False, default='')
     update_time = models.DateTimeField(auto_now=True)
     create_time = models.DateTimeField(auto_now_add=True)
 
@@ -45,7 +45,7 @@ class UserTutorSchedule(models.Model):
     start_at = models.TimeField(null=False)
     end_at = models.TimeField(null=False)
     due_date = models.DateField(null=False)
-    edit_by = models.PositiveIntegerField(null=False)
+    edit_by = models.CharField(max_length=100, null=False, default='')
     update_time = models.DateTimeField(auto_now=True)
     create_time = models.DateTimeField(auto_now_add=True)
 
