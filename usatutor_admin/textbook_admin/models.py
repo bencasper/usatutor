@@ -2,10 +2,13 @@ from django.db import models
 
 
 class TextbookContent(models.Model):
-    level_id = models.PositiveIntegerField(null=False)
+    # level_id 暂时不用
+    level_id = models.PositiveIntegerField(null=True, blank=True)
+    level_name = models.CharField(max_length=100, null=False, default='')
     unit = models.CharField(max_length=100, null=False)
-    unit_name = models.CharField(max_length=255, null=False)
+    unit_title = models.CharField(max_length=255, null=False)
     textbook_title = models.CharField(max_length=100, null=False)
+    grammar = models.CharField(max_length=100, null=False, default='')
     textbook_url = models.URLField(max_length=255, null=False, default='')
     textbook_desc = models.CharField(max_length=255, null=False, default='')
     tag = models.CharField(max_length=255, null=False, default='')
