@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from rest_framework import serializers
 
-from user_admin.models import UserTutorSchedule
+from .models import UserTutorSchedule
 
 
 class TutorScheduleSerializer(serializers.ModelSerializer):

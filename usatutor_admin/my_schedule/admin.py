@@ -1,13 +1,14 @@
-from django.conf import settings
-from django.contrib import admin
 from django import forms
+from django.contrib import admin
 from django.template.response import TemplateResponse
-from .models import UserTutorResume
+
+from .models import UserTutorSchedule
 
 
-@admin.register(UserTutorResume)
+# Register your models here.
+@admin.register(UserTutorSchedule)
 class userScheduleAdmin(admin.ModelAdmin):
-    add_form_template = "user_admin/admin/my_schedule.html"
+    change_list_template = "my_schedule/admin/my_schedule.html"
 
     @property
     def media(self):
@@ -34,4 +35,3 @@ class userScheduleAdmin(admin.ModelAdmin):
 
         return TemplateResponse(request, form_template, context)
 
-    pass

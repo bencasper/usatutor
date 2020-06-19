@@ -4,7 +4,7 @@ from django.db import models
 class CourseContent(models.Model):
     course_name = models.CharField(max_length=100, null=False, blank=False)
     course_desc = models.CharField(max_length=255, null=False, default='')
-    edit_by = models.CharField(max_length=100, null=False, default='')
+    edit_by = models.CharField(max_length=100, null=False, blank=True, default='')
     update_time = models.DateTimeField(auto_now=True)
     create_time = models.DateTimeField(auto_now_add=True)
 

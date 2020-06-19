@@ -5,9 +5,9 @@ from django.http import HttpResponse, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.parsers import JSONParser
 
-from user_admin.models import UserTutorSchedule
+from .models import UserTutorSchedule
 
-from user_admin.serializer import TutorScheduleSerializer
+from .serializer import TutorScheduleSerializer
 
 
 @csrf_exempt

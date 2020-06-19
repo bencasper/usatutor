@@ -44,7 +44,7 @@ class SaleOrder(models.Model):
     class Meta:
         db_table = 'sale_order'
         verbose_name = "Order Management"
-        verbose_name_plural = "Order Management"
+        verbose_name_plural = "ORDER MANAGEMENT"
 
 # 课程状态 1 未授课 2 已授课 3 已退课
 COURSE_STATUS = (
@@ -74,7 +74,7 @@ class SaleOrderCourse(models.Model):
     class Meta:
         db_table = 'sale_order_course'
         verbose_name = 'Order Course'
-        verbose_name_plural = 'Order Courses'
+        verbose_name_plural = 'ORDER COURSE'
 
 
 # 分账类型 1 订单履约结束后 t+

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from django.urls import path
 
-from user_admin import views
+from my_schedule import views
 
 urlpatterns = [
     path('schedule/list/<int:tutor_id>', views.schedule_list),

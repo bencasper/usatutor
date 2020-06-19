@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'sale_admin.apps.SaleAdminConfig',
+    'my_schedule.apps.MyScheduleConfig',
     'activity_admin.apps.ActivityAdminConfig',
     'user_admin.apps.UserAdminConfig',
     'course_admin.apps.CourseAdminConfig',

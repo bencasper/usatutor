@@ -8,5 +8,7 @@ from .models import TextbookContent
 class TextbookAdmin(admin.ModelAdmin):
     change_form_template = 'textbook_admin/admin/change_form.html'
     list_display = ('id', 'level_name', 'unit', 'unit_title', 'textbook_title', 'grammar', 'cover_img', 'edit_by')
-
     search_fields = ['textbook_title']
+
+    def _get_base_actions(self):
+        return []
