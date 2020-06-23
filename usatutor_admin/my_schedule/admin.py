@@ -1,3 +1,5 @@
+# Register your models here.
+from course_admin.models import CourseContent
 from django import forms
 from django.contrib import admin
 from django.template.response import TemplateResponse
@@ -5,10 +7,16 @@ from django.template.response import TemplateResponse
 from .models import UserTutorSchedule
 
 
-# Register your models here.
 @admin.register(UserTutorSchedule)
-class userScheduleAdmin(admin.ModelAdmin):
+class UserScheduleAdmin(admin.ModelAdmin):
     change_list_template = "my_schedule/admin/my_schedule.html"
+
+    def changelist_view(self, request, extra_context=None):
+        courses = CourseContent.objects.all().order_by('id')
+        extra_context = {
+           'courses': courses
+        }
+        return super().changelist_view(request, extra_context)
 
     @property
     def media(self):
