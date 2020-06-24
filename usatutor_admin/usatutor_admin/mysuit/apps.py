@@ -14,3 +14,7 @@ class SuitConfig(DjangoSuitConfig):
 
     # Show changelist top actions only if any row is selected
     toggle_changelist_top_actions = True
+
+
+class TutorSiteConfig(AdminConfig):
+    default_site = 'usatutor_admin.mysuit.admin.TutorSite'
