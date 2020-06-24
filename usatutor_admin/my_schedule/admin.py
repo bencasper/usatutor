@@ -26,13 +26,16 @@ class UserScheduleAdmin(admin.ModelAdmin):
             'jquery-ui.min.js',
             'fullcalendar.min.js',
             'scheduler.min.js',
+            'jquery-confirm.min.js'
         ]
         css = [
             'fullcalendar.min.css',
             'scheduler.min.css',
+            'jquery-ui.css',
+            'jquery-confirm.min.css',
         ]
-        return forms.Media(css={'all': ['useradmin/css/%s' % url for url in css]},
-                           js=['useradmin/js/%s' % url for url in js])
+        return forms.Media(css={'all': ['schedule/css/%s' % url for url in css]},
+                           js=['schedule/js/%s' % url for url in js])
 
     def render_change_form(self, request, context, add=False, change=False, form_url='', obj=None):
         context.update({
