@@ -4,6 +4,7 @@ from django.db import models
 # Create your models here.
 class UserTutorSchedule(models.Model):
     tutor_id = models.PositiveIntegerField(null=False)
+    event_id = models.CharField(max_length=100, null=False)
     course_id = models.PositiveIntegerField(null=False)
     course_name = models.CharField(max_length=100, null=False)
     start_at = models.CharField(max_length=100, null=False)

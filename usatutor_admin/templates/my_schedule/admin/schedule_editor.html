@@ -1,7 +1,36 @@
 {% load i18n static %}
 <script>
-    $(function () { // document ready
 
+    $(function () { // document ready
+        function readCookie(name) {
+            let nameEQ = name + "=";
+            let ca = document.cookie.split(';');
+            for(var i=0;i < ca.length;i++) {
+                let c = ca[i];
+                while (c.charAt(0)==' ') c = c.substring(1,c.length);
+            if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+            }
+            return null;
+        }
+
+        $.postSchedule = function (url, data, callback, errorCallback) {
+            console.log('callback', callback)
+            console.log('ajax data', JSON.stringify(data))
+            let $crf_token = readCookie('csrftoken');
+            {#console.log($crf_token)#}
+            $.ajax({
+                url : url,
+                method: 'POST',
+                contentType : 'application/json',
+                headers:{"X-CSRFToken": $crf_token},
+                data : JSON.stringify(data),
+                dataType : 'json',
+                statusCode: {
+                    200: callback,
+                },
+                error: errorCallback
+                })
+        }
 
         /* initialize the external events
         -----------------------------------------------------------------*/
@@ -28,11 +57,46 @@
 
         /* initialize the calendar
         -----------------------------------------------------------------*/
-        var d = new Date();
-        var tody = d.getFullYear() + "-" + (d.getMonth()+1) + "-" + d.getDate();
+        let d = new Date();
+        let today = d.getFullYear() + "-" + (d.getMonth()+1) + "-" + d.getDate();
+
+        function add_schedule(event, callback) {
+            let url = '{{ add_url }}'
+            let endAt = moment(event.end._i);
+            let startAt = moment(event.end._i).subtract(1, 'hours')
+            let data = {
+                event_id: event._id,
+                course_id: event.value,
+                course_name: event.title,
+                start_at: startAt.format(),
+                end_at: endAt.format()
+            }
+            $.postSchedule(url, data, callback)
+        }
+
+        function update_schedule(event, callback) {
+            let url = '{{ update_url }}'
+            let endAt = moment(event.end._i);
+            let startAt = moment(event.end._i).subtract(1, 'hours')
+            let data = {
+                schedule_id: event.schedule_id,
+                event_id: event._id,
+                course_id: event.value,
+                course_name: event.title,
+                start_at: startAt.format(),
+                end_at: endAt.format()
+            }
+            $.postSchedule(url, data, callback)
+        }
+
+        function delete_schedule(event, callback) {
+            let url = '{{ del_url }}'
+            $.postSchedule(url, {id: event.schedule_id}, callback)
+        }
+
         $('#calendar').fullCalendar({
             schedulerLicenseKey: 'GPL-My-Project-Is-Open-Source',
-            now: tody,
+            now: today,
             editable: true, // enable draggable events
             droppable: true, // this allows things to be dropped onto the calendar
             aspectRatio: 1.8,
@@ -51,17 +115,23 @@
                 },
             },
             events: [
-
+                {% for schedule in schedules %}
+                    {schedule_id: {{ schedule.id }}, start: '{{ schedule.start_at }}', end: '{{ schedule.end_at }}', title: '{{ schedule.course_name}}', value: '{{ schedule.course_id }}' },
+                {% endfor %}
             ],
             eventRender: function(event, element) {
                 element.find(".fc-bg").css("pointer-events","none");
                 element.append("<div style='position:absolute;bottom:0px;right:0px' ><button type='button' id='btnDeleteEvent' class='btn btn-block btn-default btn-flat'>X</button></div>" );
                 element.find("#btnDeleteEvent").click(function(){
                     $.confirm({
-                        content: 'Are u sure?',
+                        title: 'Are u sure?',
+                        content: '',
                         buttons: {
                             confirm: function () {
-                                $('#calendar').fullCalendar('removeEvents',event._id);
+                                delete_schedule(event, function (data){
+                                    console.log('del', data)
+                                    $('#calendar').fullCalendar('removeEvents',event._id)
+                                })
                             },
                             cancel: function () {
 
@@ -82,11 +152,21 @@
             },
             eventReceive: function (event) { // called when a proper external event is dropped
                 console.log('eventReceive', event);
-                console.log('startTime', moment(event.start).format())
+                add_schedule(event, function (data) {
+                    //update schuele_id of event
+                    console.log('return ', data)
+                    $('#calendar').fullCalendar('removeEvents', event._id)
+                    event.schedule_id = data
+                    console.log('event', event)
+                     $('#calendar').fullCalendar('renderEvent', event)
+
+                });
 
             },
             eventDrop: function (event) { // called when an event (already on the calendar) is moved
                 console.log('eventDrop', event);
+                //update
+                update_schedule(event);
             }
         });
 
@@ -145,7 +225,7 @@
     }
 </style>
 
-<h2>Calendar Schedule</h2>
+<h2>My Schedule</h2>
 
 
 <div id="wrap">
