@@ -108,7 +108,7 @@ WSGI_APPLICATION = 'usatutor_admin.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        # 'HOST': '120.27.49.245',
+        # 'HOST': '165.22.243.205',
         'PORT': '3306',
         'NAME': 'usa_tutor',
         'USER': 'usatutor',
