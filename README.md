@@ -14,3 +14,7 @@
 - apt-get install python3-mysqldb libmysqlclient-dev python-dev
 - [mysql8](https://www.tecmint.com/install-mysql-8-in-ubuntu/)
 - ufw
+
+## some tools
+- find . | grep -E "(__pycache__|\.pyc|\.pyo$)" | xargs rm -rf
+
