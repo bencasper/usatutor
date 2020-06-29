@@ -108,14 +108,10 @@ WSGI_APPLICATION = 'usatutor_admin.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        # 'HOST': '165.22.243.205',
-        'PORT': '3306',
         'NAME': 'usa_tutor',
-        'USER': 'usatutor',
-        'PASSWORD': 'usatutor~123',
-        # 'OPTIONS': {
-        #     'read_default_file': '/path/to/my.cnf',
-        # },
+        'OPTIONS': {
+            'read_default_file': '/etc/mysql/my.cnf',
+        },
     }
 }
 
