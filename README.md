@@ -20,6 +20,11 @@
         apt-get install python3-mysqldb libmysqlclient-dev python-dev
     ```
 - [mysql8](https://www.tecmint.com/install-mysql-8-in-ubuntu/)
+
+- [mysql my.cnf](https://dev.mysql.com/doc/refman/8.0/en/option-files.html)
+
+- [django using my.cnf](https://docs.djangoproject.com/en/3.0/ref/databases/#mysql-notes)
+
 - ufw
 
 ## some tools
@@ -27,5 +32,11 @@
     ```shell script
     find . | grep -E "(__pycache__|\.pyc|\.pyo$)" | xargs rm -rf  
     ```
+  
+## command
+-  ##### nohup start
+    ```shell script
+    nohup ./manage.py runserver 0.0.0.0:8000&
+    ```  
 
 
