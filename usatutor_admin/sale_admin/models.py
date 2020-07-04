@@ -44,7 +44,7 @@ class SaleOrder(models.Model):
     class Meta:
         db_table = 'sale_order'
         verbose_name = "Order Management"
-        verbose_name_plural = "ORDER MANAGEMENT"
+        verbose_name_plural = ""
 
 # 课程状态 1 未授课 2 已授课 3 已退课
 COURSE_STATUS = (
@@ -74,7 +74,7 @@ class SaleOrderCourse(models.Model):
     class Meta:
         db_table = 'sale_order_course'
         verbose_name = 'Order Course'
-        verbose_name_plural = 'ORDER COURSE'
+        verbose_name_plural = ''
 
 
 # 分账类型 1 订单履约结束后 t+
@@ -99,7 +99,7 @@ class SaleOrderFinance(models.Model):
     class Meta:
         db_table = 'sale_order_finance'
         verbose_name = 'ORDER FINANCE'
-        verbose_name_plural = 'ORDER FINANCE'
+        verbose_name_plural = ''
 
 #支付类型 1 支付 2 退款
 PAYMENT_TYPE = (
@@ -140,4 +140,4 @@ class SaleOrderPayment(models.Model):
     class Meta:
         db_table = 'sale_order_payment'
         verbose_name = 'ORDER PAYMENT'
-        verbose_name_plural = 'ORDER PAYMENT'
+        verbose_name_plural = ''

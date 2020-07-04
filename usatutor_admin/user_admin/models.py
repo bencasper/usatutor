@@ -29,7 +29,7 @@ class TutorInfo(models.Model):
     class Meta:
         db_table = 'user_tutor_info'
         verbose_name = 'TUTOR INFO'
-        verbose_name_plural = 'TUTOR INFO'
+        verbose_name_plural = ''
 
 
 class UserTutorResume(models.Model):
@@ -43,6 +43,6 @@ class UserTutorResume(models.Model):
     class Meta:
         db_table = 'user_tutor_resume'
         verbose_name = 'USER RESUME'
-        verbose_name_plural = 'USER RESUME'
+        verbose_name_plural = ''
 
 

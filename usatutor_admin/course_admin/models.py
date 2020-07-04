@@ -11,7 +11,7 @@ class CourseContent(models.Model):
     class Meta:
         db_table = 'course_content'
         verbose_name = 'Course'
-        verbose_name_plural = 'COURSE'
+        verbose_name_plural = ''
 
 
 class CourseLevel(models.Model):
@@ -24,4 +24,4 @@ class CourseLevel(models.Model):
     class Meta:
         db_table = 'course_level'
         verbose_name = 'Course Level'
-        verbose_name_plural = 'Course Levels'
+        verbose_name_plural = ''

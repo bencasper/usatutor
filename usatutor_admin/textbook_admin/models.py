@@ -20,7 +20,7 @@ class TextbookContent(models.Model):
     class Meta:
         db_table = 'textbook_content'
         verbose_name = 'TEXTBOOK'
-        verbose_name_plural = 'TEXTBOOKS'
+        verbose_name_plural = ''
 
     def __str__(self):
         return "%s" % self.textbook_title

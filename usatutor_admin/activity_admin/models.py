@@ -30,4 +30,4 @@ class ActivityEntity(models.Model):
     class Meta:
         db_table = 'activity_entity'
         verbose_name = 'activity'
-        verbose_name_plural = 'ACTIVITY'
+        verbose_name_plural = ''

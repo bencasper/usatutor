@@ -23,4 +23,4 @@ class StudentInfo(models.Model):
     class Meta:
         db_table = 'user_student_info'
         verbose_name = 'STUDENT INFO'
-        verbose_name_plural = 'STUDENT INFO'
+        verbose_name_plural = ''

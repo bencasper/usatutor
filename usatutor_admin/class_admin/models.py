@@ -5,4 +5,6 @@ from django.db import models
 
 # 占位用,无实际字段
 class ClassAdminModel(models.Model):
-    pass
+    class Meta:
+        verbose_name = ''
+        verbose_name_plural = ''

@@ -2,7 +2,11 @@ from django.contrib import admin
 from django.contrib.auth import get_user
 
 
-class TutorCRUDAdmin(admin.ModelAdmin):
+class TemplateAdmin(admin.ModelAdmin):
+    pass
+
+class TutorCRUDAdmin(TemplateAdmin):
+
     def save_model(self, request, obj, form, change):
         obj.edit_by = get_user(request).username
         obj.save()
@@ -11,7 +15,7 @@ class TutorCRUDAdmin(admin.ModelAdmin):
         return []
 
 
-class TutorREADAdmin(admin.ModelAdmin):
+class TutorREADAdmin(TemplateAdmin):
     def has_add_permission(self, request, obj=None):
         return False
 

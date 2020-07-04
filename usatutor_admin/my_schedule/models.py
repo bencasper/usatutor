@@ -16,4 +16,4 @@ class UserTutorSchedule(models.Model):
     class Meta:
         db_table = 'user_tutor_schedule'
         verbose_name = "SCHEDULE"
-        verbose_name_plural = "SCHEDULE"
+        verbose_name_plural = ""
