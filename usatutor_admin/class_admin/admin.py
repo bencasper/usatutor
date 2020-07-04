@@ -3,9 +3,10 @@ from django.contrib import admin
 # Register your models here.
 from middleware.admin import TutorREADAdmin
 
-from .models import ActivityEntity
+from class_admin.models import ClassAdminModel
 
 
-# @admin.register(ActivityEntity)
-class ActivityAdmin(TutorREADAdmin):
+@admin.register(ClassAdminModel)
+class ClassAdmin(TutorREADAdmin):
     pass
+

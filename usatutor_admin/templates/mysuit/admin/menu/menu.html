@@ -1,4 +1,4 @@
-{% load i18n order_menu suit_tags %}
+{% load i18n suit_menu suit_tags %}
 
 {% get_menu request as menu %}
 {% with suit_layout='layout'|suit_conf:request %}
@@ -7,7 +7,7 @@
             {% if menu %}
                 {% for parent_item in menu %}
                     {% if not parent_item.align_right or suit_layout == 'vertical' %}
-                        {% include 'suit/menu_item.html' %}
+                        {% include 'mysuit/admin/menu/menu_item.html' %}
                     {% endif %}
                 {% endfor %}
             {% endif %}
@@ -15,7 +15,7 @@
         {% if menu.aligned_right_menu_items %}
             <ul class="suit-nav-right">
                 {% for parent_item in menu.aligned_right_menu_items %}
-                    {% include 'suit/menu_item.html' %}
+                    {% include 'mysuit/admin/menu/menu_item.html' %}
                 {% endfor %}
             </ul>
         {% endif %}

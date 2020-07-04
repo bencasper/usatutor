@@ -7,7 +7,7 @@ class SuitConfig(DjangoSuitConfig):
     # verbose_name = '北美外教'
 
     # Menu and header layout - horizontal or vertical
-    layout = 'horizontal'
+    layout = 'vertical'
 
     # Set default list per page
     list_per_page = 20

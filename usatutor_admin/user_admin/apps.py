@@ -1,7 +1,7 @@
 from django.apps import AppConfig
 
 
-class UserAdminConfig(AppConfig):
+class TutorAdminConfig(AppConfig):
     name = 'user_admin'
-    verbose_name = 'USER'
+    verbose_name = '教师管理'
     order = 20
