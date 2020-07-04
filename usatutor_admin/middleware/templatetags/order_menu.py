@@ -6,6 +6,9 @@ from suit.templatetags.suit_menu import get_menu as origin_get_menu, register
 def get_menu(context, request):
     menu_manager = origin_get_menu(context, request)
     menu_manager.available_apps = order_app_list(menu_manager.available_apps)
+    for menu in menu_manager:
+        if menu.children is not None and len(menu.children) == 1:
+            menu.children = []
     return menu_manager
 
 
