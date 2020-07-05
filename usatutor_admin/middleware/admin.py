@@ -5,6 +5,7 @@ from django.contrib.auth import get_user
 class TemplateAdmin(admin.ModelAdmin):
     pass
 
+
 class TutorCRUDAdmin(TemplateAdmin):
 
     def save_model(self, request, obj, form, change):
@@ -17,6 +18,12 @@ class TutorCRUDAdmin(TemplateAdmin):
 
 class TutorREADAdmin(TemplateAdmin):
     def has_add_permission(self, request, obj=None):
+        return False
+
+    def has_change_permission(self, request, obj=None):
+        return False
+
+    def has_delete_permission(self, request, obj=None):
         return False
 
     def _get_base_actions(self):

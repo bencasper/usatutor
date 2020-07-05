@@ -20,6 +20,11 @@ REFUND_STATUS = (
     (4, '全额退款')
 )
 
+PAYMENT_METHOD = (
+    (1, '微信'),
+    (2, '支付宝')
+)
+
 class SaleOrder(models.Model):
     order_no = models.CharField(max_length=45, null=False)
     tutor_id = models.PositiveIntegerField(null=False)
@@ -27,10 +32,12 @@ class SaleOrder(models.Model):
     student_id = models.PositiveIntegerField(null=False)
     student_name = models.CharField(max_length=100, null=False)
     order_status = models.PositiveIntegerField(null=False, default=1)
+    order_type = models.PositiveIntegerField(null=False, default=1)
     total_original_amount = models.DecimalField(max_digits=10, decimal_places=2, null=False)
     total_due_amount = models.DecimalField(max_digits=10, decimal_places=2, null=False)
     total_discount_amount = models.DecimalField(max_digits=10, decimal_places=2, null=False, default=0.00)
-    total_paid_amount = models.DecimalField(max_digits=10, decimal_places=2)
+    total_paid_amount = models.DecimalField(max_digits=10, decimal_places=2, verbose_name='交易金额')
+    payment_method = models.PositiveSmallIntegerField(null=False, choices=PAYMENT_METHOD, default=1, verbose_name='支付方式')
     paid_time = models.DateTimeField(blank=True, null=True)
     total_refundable_amount = models.DecimalField(max_digits=10, decimal_places=2, null=False, default=0.00)
     total_refunded_amount = models.DecimalField(max_digits=10, decimal_places=2,  null=False, default=0.00)
