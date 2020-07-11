@@ -14,11 +14,17 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path, include
+from django.urls import path, include, re_path
 from rest_framework import routers
 from usatutor_admin.mysuit.forms import AdminAuthenticationFormWithCaptcha
 
 from rest_api.views import UserViewSet
+from wagtail.admin import urls as wagtailadmin_urls
+from wagtail.core import urls as wagtail_urls
+from wagtail.documents import urls as wagtaildocs_urls
+from django.conf import settings
+from django.conf.urls.static import static
+
 
 admin.site.index_template = 'mysuit/admin/admin_index.html'
 admin.site.login_template = 'mysuit/admin/login.html'
@@ -37,6 +43,9 @@ urlpatterns = [
     path('captcha/', include('captcha.urls')),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     path('', include(router.urls)),
-    path('', include('my_schedule.urls'))
+    path('', include('my_schedule.urls')),
+    re_path(r'^cms/', include(wagtailadmin_urls)),
+    re_path(r'^documents/', include(wagtaildocs_urls)),
+    re_path(r'^pages/', include(wagtail_urls)),
 
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
