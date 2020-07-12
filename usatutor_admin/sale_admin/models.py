@@ -25,6 +25,7 @@ PAYMENT_METHOD = (
     (2, '支付宝')
 )
 
+
 class SaleOrder(models.Model):
     order_no = models.CharField(max_length=45, null=False)
     tutor_id = models.PositiveIntegerField(null=False)
@@ -37,10 +38,11 @@ class SaleOrder(models.Model):
     total_due_amount = models.DecimalField(max_digits=10, decimal_places=2, null=False)
     total_discount_amount = models.DecimalField(max_digits=10, decimal_places=2, null=False, default=0.00)
     total_paid_amount = models.DecimalField(max_digits=10, decimal_places=2, verbose_name='交易金额')
-    payment_method = models.PositiveSmallIntegerField(null=False, choices=PAYMENT_METHOD, default=1, verbose_name='支付方式')
+    payment_method = models.PositiveSmallIntegerField(null=False, choices=PAYMENT_METHOD, default=1,
+                                                      verbose_name='支付方式')
     paid_time = models.DateTimeField(blank=True, null=True)
     total_refundable_amount = models.DecimalField(max_digits=10, decimal_places=2, null=False, default=0.00)
-    total_refunded_amount = models.DecimalField(max_digits=10, decimal_places=2,  null=False, default=0.00)
+    total_refunded_amount = models.DecimalField(max_digits=10, decimal_places=2, null=False, default=0.00)
     refund_status = models.IntegerField(blank=False, default=0)
     refund_apply_time = models.DateTimeField(blank=True, null=True)
     refunded_time = models.DateTimeField(blank=True, null=True)
@@ -53,6 +55,7 @@ class SaleOrder(models.Model):
         verbose_name = "Order Management"
         verbose_name_plural = ""
 
+
 # 课程状态 1 未授课 2 已授课 3 已退课
 COURSE_STATUS = (
     (1, '未授课'),
@@ -60,8 +63,9 @@ COURSE_STATUS = (
     (3, '已退课'),
 )
 
+
 class SaleOrderCourse(models.Model):
-    manager = models.Manager()
+    order_id = models.PositiveIntegerField(null=False)
     course_name = models.CharField(max_length=100, null=False)
     course_level_id = models.PositiveIntegerField(null=False)
     course_level_name = models.CharField(max_length=45, null=False)
@@ -93,6 +97,7 @@ LEDGER_TYPE = (
     (1, 'T+')
 )
 
+
 class SaleOrderFinance(models.Model):
     order_id = models.PositiveIntegerField(null=False)
     order_income_amount = models.DecimalField(max_digits=10, decimal_places=2, null=False, default=0.00)
@@ -112,19 +117,20 @@ class SaleOrderFinance(models.Model):
         verbose_name = 'ORDER FINANCE'
         verbose_name_plural = ''
 
-#支付类型 1 支付 2 退款
+
+# 支付类型 1 支付 2 退款
 PAYMENT_TYPE = (
     (1, '支付'),
     (2, '退款'),
 )
 
-#支付方式 1 微信 2 支付宝
+# 支付方式 1 微信 2 支付宝
 PAYMENT_METHOD = (
     (1, '微信'),
     (2, '支付宝'),
 )
 
-#支付状态  1 未支付 2 已支付 3 支付失败 4 退款中 5退款完成 6 退款失败
+# 支付状态  1 未支付 2 已支付 3 支付失败 4 退款中 5退款完成 6 退款失败
 PAYMENT_STATUS = (
     (1, '未支付'),
     (2, '已支付'),
@@ -133,6 +139,7 @@ PAYMENT_STATUS = (
     (5, '退款完成'),
     (6, '退款失败')
 )
+
 
 class SaleOrderPayment(models.Model):
     payment_type = models.PositiveIntegerField(null=False, default=1)

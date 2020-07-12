@@ -65,6 +65,7 @@ INSTALLED_APPS = [
 
     'modelcluster',
     'taggit',
+    'drf_yasg',
 ]
 
 MIDDLEWARE = [
