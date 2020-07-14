@@ -43,7 +43,7 @@ router.register(r'users', UserViewSet)
 router.register(r'tutor', TutorViewSet)
 router.register(r'schedule', TutorScheduleViewSet)
 router.register(r'class', MyClassViewSet)
-router.register(r'textbook', TutorScheduleViewSet)
+router.register(r'textbook', TextBookViewSet)
 
 
 schema_view = get_schema_view(
