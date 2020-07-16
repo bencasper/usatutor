@@ -42,13 +42,19 @@ class ScheduleFilterBackend(BaseFilterBackend):
             location='query',
             required=True,
             type='string'
-        ), ]
+        ), coreapi.Field(
+            name='start_at',
+            location='query',
+            required=False,
+            type='string'
+        )]
 
 
 class TutorScheduleViewSet(viewsets.ReadOnlyModelViewSet):
     """
     tutor available schedule
     :parameter === tutor_id
+    :parameter === start_at 开始日期，默认当天
     return 7天内排课
     """
     filter_backends = (ScheduleFilterBackend, )
@@ -58,10 +64,14 @@ class TutorScheduleViewSet(viewsets.ReadOnlyModelViewSet):
 
     def get_queryset(self):
         tutor_id = self.request.query_params.get('tutor_id')
-        today = datetime.utcnow().date()
+        start_at = self.request.query_params.get('start_at')
+        if start_at is not None:
+            today = datetime.strptime(start_at, '%Y-%m-%d')
+        else:
+            today = datetime.utcnow().date()
         start = datetime(today.year, today.month, today.day)
         util = start + timedelta(8)
-        return UserTutorSchedule.objects.filter(tutor_id=int(tutor_id))\
+        return UserTutorSchedule.objects.filter(tutor_id=tutor_id)\
             .filter(start_at__gte=today).filter(start_at__lt=util)
 
 
