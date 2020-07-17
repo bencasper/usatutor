@@ -1,6 +1,7 @@
 from datetime import datetime, timedelta
 
 import coreapi
+import coreschema
 from django.shortcuts import render
 
 # Create your views here.
@@ -46,15 +47,16 @@ class ScheduleFilterBackend(BaseFilterBackend):
             name='start_at',
             location='query',
             required=False,
-            type='string'
+            type='string',
+            schema=coreschema.String(
+                description="开始日期，默认当天 e.g. 2020-07-01",
+            ),
         )]
 
 
 class TutorScheduleViewSet(viewsets.ReadOnlyModelViewSet):
     """
     tutor available schedule
-    :parameter === tutor_id
-    :parameter === start_at 开始日期 e.g. 2020-07-01，默认当天
     return 7天内排课
     """
     filter_backends = (ScheduleFilterBackend, )
