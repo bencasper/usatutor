@@ -54,7 +54,7 @@ class TutorScheduleViewSet(viewsets.ReadOnlyModelViewSet):
     """
     tutor available schedule
     :parameter === tutor_id
-    :parameter === start_at 开始日期，默认当天
+    :parameter === start_at 开始日期 e.g. 2020-07-01，默认当天
     return 7天内排课
     """
     filter_backends = (ScheduleFilterBackend, )
