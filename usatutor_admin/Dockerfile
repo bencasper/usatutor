@@ -11,7 +11,7 @@ ENV PYTHONUNBUFFERED 1
 RUN apk update \
     && apk add mariadb-dev gcc python3-dev musl-dev
 # https://github.com/python-pillow/Pillow/issues/1763
-RUN apk add --no-cache jpeg-dev zlib-dev
+RUN apk add --no-cache freetype-dev jpeg-dev zlib-dev
 RUN apk add --no-cache --virtual .build-deps build-base linux-headers
 
 # install dependencies
