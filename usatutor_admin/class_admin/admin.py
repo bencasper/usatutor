@@ -23,7 +23,7 @@ class ClassAdmin(TutorREADAdmin):
         admin site. This is used by changelist_view.
         """
         from sale_admin.models import SaleOrderCourse
-        qs = SaleOrderCourse.manager.get_queryset()
+        qs = SaleOrderCourse._default_manager.get_queryset()
         # TODO: this should be handled by some parameter to the ChangeList.
         ordering = self.get_ordering(request)
         if ordering:
