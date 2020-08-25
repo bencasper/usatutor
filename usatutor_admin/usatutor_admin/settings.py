@@ -20,12 +20,13 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '8^c6wca_dn8s*86995rwbvju6gy(e6cl!iqi&2%)ng^i*mq)!-'
+SECRET_KEY = os.environ.get("SECRET_KEY")
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = int(os.environ.get("DEBUG", default=0))
 
-ALLOWED_HOSTS = ['165.22.243.205', '120.27.49.245', '127.0.0.1', 'localhost']
+ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS").split(" ")
 
 
 # Application definition
@@ -127,11 +128,11 @@ WSGI_APPLICATION = 'usatutor_admin.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'HOST': 'rm-2ze0zqot268yae668jo.mysql.rds.aliyuncs.com',
-        'PORT': '3306',
+        'HOST': os.environ.get("DB_HOST"),
+        'PORT': os.environ.get('DB_PORT'),
         'NAME': 'usa_tutor',
-        'USER': 'usatutor',
-        'PASSWORD': 'usatutor&123',
+        'USER': os.environ.get('DB_USERNAME'),
+        'PASSWORD': os.environ.get('DB_PASSWORD'),
         # 'OPTIONS': {
         #     'read_default_file': '/etc/mysql/my.cnf',
         # },
