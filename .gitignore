@@ -109,7 +109,8 @@ venv/
 ENV/
 env.bak/
 venv.bak/
-usatutor_admin/.env.dev
+usatutor_admin/.env
+usatutor_admin/.env
 # Spyder project settings
 .spyderproject
 .spyproject

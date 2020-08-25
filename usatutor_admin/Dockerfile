@@ -13,6 +13,7 @@ RUN apk update \
 # https://github.com/python-pillow/Pillow/issues/1763
 RUN apk add --no-cache freetype-dev jpeg-dev zlib-dev
 RUN apk add --no-cache --virtual .build-deps build-base linux-headers
+RUN apk add --no-cache tzdata
 
 # install dependencies
 RUN pip install --upgrade pip

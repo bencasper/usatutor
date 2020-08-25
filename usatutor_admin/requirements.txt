@@ -8,3 +8,4 @@ xlrd
 # django-suit==2.0a1
 wagtail==2.9.2
 drf-yasg
+python-decouple
