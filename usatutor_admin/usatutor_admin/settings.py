@@ -219,7 +219,7 @@ LOGGING = {
             'class': 'logging.handlers.TimedRotatingFileHandler',
             'when': 'midnight',
             'interval': 1,
-            'filename': '/home/logs/stdout.log',
+            'filename': '/usr/local/logs/stdout.log',
         },
     },
     'root': {
